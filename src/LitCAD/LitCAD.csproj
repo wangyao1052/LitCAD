@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6B044BFC-D977-41C1-A86C-AC6B0E3A60C1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LitCAD</RootNamespace>
+    <AssemblyName>LitCAD</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>3</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\LitCAD.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\LitCAD.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Debug\LitCAD.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\LitCAD.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LitMath, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rdlib\LitMath.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationServices\CommonColors.cs" />
+    <Compile Include="Commands\Anchor\RayAnchorCmd.cs" />
+    <Compile Include="Commands\Anchor\TextAnchorCmd.cs" />
+    <Compile Include="Commands\Anchor\XlineAnchorCmd.cs" />
+    <Compile Include="Commands\CommandNames.cs" />
+    <Compile Include="Commands\CommandsFactory.cs" />
+    <Compile Include="Commands\Draw\PolygonCmd.cs" />
+    <Compile Include="Commands\Draw\RayCmd.cs" />
+    <Compile Include="Commands\Draw\RectangleCmd.cs" />
+    <Compile Include="Commands\Draw\XlineCmd.cs" />
+    <Compile Include="Commands\Draw\_DrawCmd.cs" />
+    <Compile Include="Commands\Modify\MirrorCmd.cs" />
+    <Compile Include="Commands\Modify\_ModifyCmd.cs" />
+    <Compile Include="Commands\Modify\OffsetCmd.cs" />
+    <Compile Include="Commands\Modify\Offset\OffsetArc.cs" />
+    <Compile Include="Commands\Modify\Offset\_OffsetOpsMgr.cs" />
+    <Compile Include="Commands\Modify\Offset\OffsetCircle.cs" />
+    <Compile Include="Commands\Modify\Offset\OffsetLine.cs" />
+    <Compile Include="Commands\Modify\Offset\_OffsetOperation.cs" />
+    <Compile Include="Commands\Text\EditCmd.cs" />
+    <Compile Include="DatabaseUtils\DatabaseUtils.cs" />
+    <Compile Include="ApplicationServices\Document.cs" />
+    <Compile Include="ApplicationServices\HashSet.cs" />
+    <Compile Include="ApplicationServices\Selection.cs" />
+    <Compile Include="ApplicationServices\Selections.cs" />
+    <Compile Include="Commands\Anchor\AnchorCmd.cs" />
+    <Compile Include="Commands\Anchor\ArcAnchorCmd.cs" />
+    <Compile Include="Commands\Anchor\CircleAnchorCmd.cs" />
+    <Compile Include="Commands\Anchor\LineAnchorCmd.cs" />
+    <Compile Include="Commands\Anchor\PolylineAnchorCmd.cs" />
+    <Compile Include="Commands\Draw\ArcCmd.cs" />
+    <Compile Include="Commands\Draw\CircleCmd.cs" />
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\CommandsMgr.cs" />
+    <Compile Include="Commands\Draw\LinesChainCmd.cs" />
+    <Compile Include="Commands\Draw\PolylineCmd.cs" />
+    <Compile Include="Commands\Modify\CopyCmd.cs" />
+    <Compile Include="Commands\Modify\DeleteCmd.cs" />
+    <Compile Include="Commands\Modify\MoveCmd.cs" />
+    <Compile Include="Commands\Edit\RedoCmd.cs" />
+    <Compile Include="Commands\Edit\UndoCmd.cs" />
+    <Compile Include="Commands\Layer\AddLayerCmd.cs" />
+    <Compile Include="Commands\Layer\ModifyLayerCmd.cs" />
+    <Compile Include="DatabaseUtils\ArcUtils.cs" />
+    <Compile Include="Presenter\Anchor\RayAnchor.cs" />
+    <Compile Include="Presenter\Anchor\RayAnchorCreator.cs" />
+    <Compile Include="Presenter\Anchor\TextAnchor.cs" />
+    <Compile Include="Presenter\Anchor\TextAnchorCreator.cs" />
+    <Compile Include="Presenter\Anchor\XlineAnchor.cs" />
+    <Compile Include="Presenter\Anchor\XlineAnchorCreator.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynamicInputer.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynInputCtrl\DynInputCtrl.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynInputCtrl\DynInputString.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynInputCtrl\DynInputInteger.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynInputCtrl\DynInputTextBoxOne.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynInputCtrl\DynInputDouble.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynInputResult\DynInputResult.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynInputResult\DynInputResultT.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynInputResult\DynInputStatus.cs" />
+    <Compile Include="Presenter\DynamicInputer\DynInputCtrl\DynInputPoint.cs" />
+    <Compile Include="Presenter\EntityDrawer\RayDrawer.cs" />
+    <Compile Include="Presenter\EntityDrawer\TextDrawer.cs" />
+    <Compile Include="Presenter\EntityDrawer\XlineDrawer.cs" />
+    <Compile Include="Presenter\PickupBox\RayHitter.cs" />
+    <Compile Include="Presenter\PickupBox\TextHitter.cs" />
+    <Compile Include="Presenter\PickupBox\XlineHitter.cs" />
+    <Compile Include="Presenter\SelectRectangle\RayRS.cs" />
+    <Compile Include="Presenter\SelectRectangle\TextRS.cs" />
+    <Compile Include="Presenter\SelectRectangle\XlineRS.cs" />
+    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostText.cs" />
+    <Compile Include="Windows\DynamicInputTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Windows\LayerItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\LayerItemForm.Designer.cs">
+      <DependentUpon>LayerItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LayersManagementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\LayersManagementForm.Designer.cs">
+      <DependentUpon>LayersManagementForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\Layer\RemoveLayersCmd.cs" />
+    <Compile Include="Math\MathUtils.cs" />
+    <Compile Include="Presenter\Anchor\AnchorsMgr.cs" />
+    <Compile Include="Presenter\Anchor\ArcAnchor.cs" />
+    <Compile Include="Presenter\Anchor\ArcAnchorCreator.cs" />
+    <Compile Include="Presenter\Anchor\CircleAnchor.cs" />
+    <Compile Include="Presenter\Anchor\CircleAnchorCreator.cs" />
+    <Compile Include="Presenter\Anchor\EntityAnchorCreator.cs" />
+    <Compile Include="Presenter\Anchor\LineAnchorCreator.cs" />
+    <Compile Include="Presenter\Anchor\PolylineAnchor.cs" />
+    <Compile Include="Presenter\Anchor\PolylineAnchorCreator.cs" />
+    <Compile Include="Presenter\CSYS.cs" />
+    <Compile Include="Presenter\Anchor\EntityAnchor.cs" />
+    <Compile Include="Presenter\Anchor\LineAnchor.cs" />
+    <Compile Include="Presenter\EntityDrawer\ArcDrawer.cs" />
+    <Compile Include="Presenter\EntityDrawer\CircleDrawer.cs" />
+    <Compile Include="Presenter\EntityDrawer\EntityDrawer.cs" />
+    <Compile Include="Presenter\EntityDrawer\_EntityDrawerMgr.cs" />
+    <Compile Include="Presenter\EntityDrawer\LineDrawer.cs" />
+    <Compile Include="Presenter\EntityDrawer\PolylineDrawer.cs" />
+    <Compile Include="Presenter\GDIResMgr.cs" />
+    <Compile Include="Presenter\LocateCross.cs" />
+    <Compile Include="Presenter\Origin.cs" />
+    <Compile Include="Presenter\PickupBox\ArcHitter.cs" />
+    <Compile Include="Presenter\PickupBox\CircleHitter.cs" />
+    <Compile Include="Presenter\PickupBox\EntityHitter.cs" />
+    <Compile Include="Presenter\PickupBox\LineHitter.cs" />
+    <Compile Include="Presenter\PickupBox\_PickupBox.cs" />
+    <Compile Include="Presenter\PickupBox\PolylineHitter.cs" />
+    <Compile Include="Presenter\Pointer.cs" />
+    <Compile Include="Presenter\Presenter.cs" />
+    <Compile Include="Windows\DocumentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\DocumentForm.Designer.cs">
+      <DependentUpon>DocumentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\ICanvas.cs" />
+    <Compile Include="Interface\IPresenter.cs" />
+    <Compile Include="Windows\Canvas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Canvas.Designer.cs">
+      <DependentUpon>Canvas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\MainWin.Designer.cs">
+      <DependentUpon>MainWin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MenuNames.cs" />
+    <Compile Include="Presenter\SelectRectangle\ArcRS.cs" />
+    <Compile Include="Presenter\SelectRectangle\CircleRS.cs" />
+    <Compile Include="Presenter\SelectRectangle\EntityRS.cs" />
+    <Compile Include="Presenter\SelectRectangle\EntityRSMgr.cs" />
+    <Compile Include="Presenter\SelectRectangle\LineRS.cs" />
+    <Compile Include="Presenter\SelectRectangle\PolylineRS.cs" />
+    <Compile Include="Presenter\SelectRectangle\SelectRectangle.cs" />
+    <Compile Include="Presenter\SnapNodeHost\SnapNodeHost.cs" />
+    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostArc.cs" />
+    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostCircle.cs" />
+    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostLine.cs" />
+    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostPolyline.cs" />
+    <Compile Include="Presenter\SnapNodesMgr.cs" />
+    <Compile Include="Presenter\SnapNode\SnapNode.cs" />
+    <Compile Include="Presenter\SnapNode\SnapNodeCenter.cs" />
+    <Compile Include="Presenter\SnapNode\SnapNodeEnd.cs" />
+    <Compile Include="Presenter\SnapNode\SnapNodeMiddle.cs" />
+    <Compile Include="Presenter\XorGDI.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ToolStripMgr.cs" />
+    <EmbeddedResource Include="Windows\LayerItemForm.resx">
+      <DependentUpon>LayerItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\DocumentForm.resx">
+      <DependentUpon>DocumentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Canvas.resx">
+      <DependentUpon>Canvas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\LayersManagementForm.resx">
+      <DependentUpon>LayersManagementForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\MainWin.resx">
+      <DependentUpon>MainWin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lcdb\lcdb.csproj">
+      <Project>{A984479A-E0FC-45E0-8CA3-EB39D197E652}</Project>
+      <Name>lcdb</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\format_layer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\common_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\common_subtract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_array.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_copy.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_extemd.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_mirror.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_move.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_offset.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_rotate.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_scale.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_trim.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\modify\modify_erase.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\draw\draw_arc_3pnts.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\draw\draw_arc_cse.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\draw\draw_circle_cr.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\draw\draw_line.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\draw\draw_polyline.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\edit\edit_redo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\edit\edit_undo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\file\file_new.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\file\file_open.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\file\file_save.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\file\file_saveas.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Windows\Controls\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\draw\draw_rectangle.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\draw\draw_polygon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\draw\draw_ray.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\draw\draw_xline.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

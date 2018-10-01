@@ -1,0 +1,11 @@
+DBObject
+|----DBTable
+	 |----BlockTable (不可删除)
+	 |----LayerTable (不可删除)
+|----DBTableRecord
+	 |----Block (***)
+	 |----Layer
+|----Entity
+	 |----Line
+	 |----Circle
+	 |----Polyline
