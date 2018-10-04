@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 using LitCAD.DatabaseServices;
 
@@ -14,6 +15,7 @@ namespace LitCAD
         private Pen _pen = null;
         private Pen _entitySelectedPen = null;
         private SolidBrush _brush = null;
+        private HatchBrush _entitySelectedBrush = null;
 
         /// <summary>
         /// 选择矩形画笔
@@ -70,6 +72,8 @@ namespace LitCAD
             _entitySelectedPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Custom;
             _entitySelectedPen.DashPattern = new float[] { 3, 3 };
             _brush = new SolidBrush(Color.White);
+            _entitySelectedBrush = new HatchBrush(
+                HatchStyle.DiagonalCross, Color.FromArgb(33, 40, 48), Color.White);
         }
 
         public Pen GetPen(Color color, double width)
@@ -85,10 +89,16 @@ namespace LitCAD
             return _entitySelectedPen;
         }
 
-        public SolidBrush GetBrush(Color color)
+        public Brush GetBrush(Color color)
         {
             _brush.Color = color;
             return _brush;
+        }
+
+        public Brush GetEntitySelectedBrush(Entity entity)
+        {
+            _entitySelectedBrush = new HatchBrush(HatchStyle.DiagonalCross, Color.FromArgb(33, 40, 48), entity.colorValue);
+            return _entitySelectedBrush;
         }
     }
 }

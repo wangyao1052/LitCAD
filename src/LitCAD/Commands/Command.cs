@@ -9,7 +9,7 @@ using LitCAD.UI;
 
 namespace LitCAD.Commands
 {
-    internal abstract class Command
+    internal abstract class Command : ICommand
     {
         /// <summary>
         /// 命令管理器
@@ -28,12 +28,12 @@ namespace LitCAD.Commands
 
         internal Document document
         {
-            get { return _mgr.presenter.document; }
+            get { return _mgr.presenter.document as Document; }
         }
 
         internal Database database
         {
-            get { return _mgr.presenter.document.database; }
+            get { return (_mgr.presenter.document as Document).database; }
         }
 
         internal Pointer pointer

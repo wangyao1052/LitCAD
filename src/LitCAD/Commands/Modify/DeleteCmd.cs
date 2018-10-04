@@ -20,7 +20,7 @@ namespace LitCAD.Commands.Modify
         private List<Entity> _items = new List<Entity>();
         private void InitializeItemsToDelete()
         {
-            Document doc = _mgr.presenter.document;
+            Document doc = _mgr.presenter.document as Document;
             foreach (Selection sel in _mgr.presenter.selections)
             {
                 DBObject dbobj = doc.database.GetObject(sel.objectId);

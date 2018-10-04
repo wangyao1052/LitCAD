@@ -51,7 +51,7 @@ namespace LitCAD.DatabaseServices
         /// <summary>
         /// 对齐方式
         /// </summary>
-        private TextAlignment _alignment;
+        private TextAlignment _alignment = TextAlignment.LeftBottom;
         public TextAlignment alignment
         {
             get { return _alignment; }
@@ -138,6 +138,15 @@ namespace LitCAD.DatabaseServices
         /// </summary>
         public Text()
         {
+        }
+
+        /// <summary>
+        /// 绘制函数
+        /// </summary>
+        public override void Draw(IGraphicsDraw gd)
+        {
+            LitMath.Vector2 size = gd.DrawText(_position, _text, _height, _font, (LitCAD.TextAlignment)_alignment);
+            this.UpdateBounding(size.x, size.y);
         }
 
         /// <summary>

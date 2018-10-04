@@ -109,7 +109,12 @@ namespace LitCAD.DatabaseServices
             }
         }
 
-        
+        /// <summary>
+        /// 绘制函数
+        /// </summary>
+        public virtual void Draw(IGraphicsDraw gd)
+        {
+        }
 
         /// <summary>
         /// 克隆函数

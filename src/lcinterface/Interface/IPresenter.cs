@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-using LitCAD.ApplicationServices;
-
 namespace LitCAD
 {
-    internal interface IPresenter
+    public interface IPresenter
     {
-        Document document { get; }
+        IDocument document { get; }
         ICanvas canvas { get; }
 
         void OnPaintCanvas(PaintEventArgs e);
@@ -23,7 +21,7 @@ namespace LitCAD
         void OnKeyDown(KeyEventArgs e);
         void OnKeyUp(KeyEventArgs e);
 
-        void OnCommand(Commands.Command cmd);
+        void OnCommand(ICommand cmd);
 
         double ModelToCanvas(double value);
         LitMath.Vector2 ModelToCanvas(LitMath.Vector2 pointInModel);

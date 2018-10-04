@@ -10,6 +10,257 @@ using LitCAD.UI;
 
 namespace LitCAD
 {
+    /// <summary>
+    /// 图形绘制
+    /// </summary>
+    internal class GraphicsDraw : IGraphicsDraw
+    {
+        private Graphics _g = null;
+        public Graphics graphics
+        {
+            get { return _g; }
+            set { _g = value; }
+        }
+
+        /// <summary>
+        /// 绘图笔
+        /// </summary>
+        private Pen _pen = null;
+        public Pen pen
+        {
+            get { return _pen; }
+            set { _pen = value; }
+        }
+
+        /// <summary>
+        /// 绘图画刷
+        /// </summary>
+        private Brush _brush = null;
+        public Brush brush
+        {
+            get { return _brush; }
+            set { _brush = value; }
+        }
+
+        private Presenter _presenter = null;
+        public Presenter presenter
+        {
+            get { return _presenter; }
+            set { _presenter = value; }
+        }
+
+        public void DrawLine(LitMath.Vector2 startPoint, LitMath.Vector2 endPoint)
+        {
+            LitMath.Vector2 startInCanvas = _presenter.ModelToCanvas(startPoint);
+            LitMath.Vector2 endInCanvas = _presenter.ModelToCanvas(endPoint);
+            graphics.DrawLine(_pen,
+                (float)startInCanvas.x, (float)startInCanvas.y,
+                (float)endInCanvas.x, (float)endInCanvas.y);
+        }
+
+        public void DrawXLine(LitMath.Vector2 basePoint, LitMath.Vector2 direction)
+        {
+            LitMath.Vector2 basePnt = _presenter.ModelToCanvas(basePoint);
+            LitMath.Vector2 otherPnt = _presenter.ModelToCanvas(basePoint + direction);
+            LitMath.Vector2 dir = (otherPnt - basePnt).normalized;
+
+            double xk = double.MinValue;
+            double yk = double.MinValue;
+            if (dir.y != 0)
+            {
+                double k = basePnt.y / dir.y;
+                xk = basePnt.x - k * dir.x;
+            }
+            if (dir.x != 0)
+            {
+                double k = basePnt.x / dir.x;
+                yk = basePnt.y - k * dir.y;
+            }
+
+            if (xk > 0
+                || (xk == 0 && dir.x * dir.y >= 0))
+            {
+                LitMath.Vector2 spnt = new LitMath.Vector2(xk, 0);
+                if (dir.y < 0)
+                {
+                    dir = -dir;
+                }
+                LitMath.Vector2 epnt = spnt + 10000 * dir;
+
+                graphics.DrawLine(_pen,
+                    (float)spnt.x, (float)spnt.y,
+                    (float)epnt.x, (float)epnt.y);
+            }
+            else if (yk > 0
+                || (yk == 0 && dir.x * dir.y >= 0))
+            {
+                LitMath.Vector2 spnt = new LitMath.Vector2(0, yk);
+                if (dir.x < 0)
+                {
+                    dir = -dir;
+                }
+                LitMath.Vector2 epnt = spnt + 10000 * dir;
+
+                graphics.DrawLine(_pen,
+                    (float)spnt.x, (float)spnt.y,
+                    (float)epnt.x, (float)epnt.y);
+            }
+        }
+
+        public void DrawRay(LitMath.Vector2 basePoint, LitMath.Vector2 direction)
+        {
+            LitMath.Vector2 basePnt = _presenter.ModelToCanvas(basePoint);
+            LitMath.Vector2 otherPnt = _presenter.ModelToCanvas(basePoint + direction);
+            LitMath.Vector2 dir = (otherPnt - basePnt).normalized;
+
+            double xk = double.MinValue;
+            double yk = double.MinValue;
+            if (basePnt.x > 0 && basePnt.x < 10000
+                && basePnt.y > 0 && basePnt.y < 10000)
+            {
+                xk = 1;
+                yk = 1;
+            }
+            else
+            {
+                if (dir.y != 0)
+                {
+                    double k = -basePnt.y / dir.y;
+                    if (k >= 0)
+                    {
+                        xk = basePnt.x + k * dir.x;
+                    }
+                }
+                if (dir.x != 0)
+                {
+                    double k = -basePnt.x / dir.x;
+                    if (k >= 0)
+                    {
+                        yk = basePnt.y + k * dir.y;
+                    }
+                }
+
+            }
+
+            if (xk > 0
+                || (xk == 0 && dir.x * dir.y >= 0)
+                || yk > 0
+                || (yk == 0 && dir.x * dir.y >= 0))
+            {
+
+                LitMath.Vector2 epnt = basePnt + 10000 * dir;
+
+                graphics.DrawLine(_pen,
+                    (float)basePnt.x, (float)basePnt.y,
+                    (float)epnt.x, (float)epnt.y);
+            }
+        }
+
+        public void DrawCircle(LitMath.Vector2 center, double radius)
+        {
+            LitMath.Vector2 centerInCanvas = _presenter.ModelToCanvas(center);
+            double radiusInCanvas = _presenter.ModelToCanvas(radius);
+            graphics.DrawEllipse(_pen,
+                (float)(centerInCanvas.x - radiusInCanvas), (float)(centerInCanvas.y - radiusInCanvas),
+                (float)radiusInCanvas * 2, (float)radiusInCanvas * 2);
+        }
+
+        public void DrawArc(LitMath.Vector2 center, double radius, double startAngle, double endAngle)
+        {
+            LitMath.Vector2 centerInCanvas = _presenter.ModelToCanvas(center);
+            double radiusInCanvas = _presenter.ModelToCanvas(radius);
+            double startAngleInCanvas = 360 - endAngle;
+            double endAngleInCanvas = 360 - startAngle;
+
+            if (endAngle < startAngle)
+                endAngle += 360;
+
+            graphics.DrawArc(pen,
+                (float)(centerInCanvas.x - radiusInCanvas), (float)(centerInCanvas.y - radiusInCanvas),
+                (float)radiusInCanvas * 2, (float)radiusInCanvas * 2,
+                (float)startAngleInCanvas, (float)(endAngleInCanvas - startAngleInCanvas));
+        }
+
+        public void DrawRectangle(LitMath.Vector2 position, double width, double height)
+        {
+            double widthInCanvas = _presenter.ModelToCanvas(width);
+            double heightInCanvas = _presenter.ModelToCanvas(height);
+            LitMath.Vector2 posInCanvas = _presenter.ModelToCanvas(position);
+            posInCanvas.y -= heightInCanvas;
+
+            graphics.DrawRectangle(pen,
+                (float)posInCanvas.x, (float)posInCanvas.y,
+                (float)widthInCanvas, (float)heightInCanvas);
+        }
+
+        public LitMath.Vector2 DrawText(LitMath.Vector2 position, string text, double height, string fontName, TextAlignment textAlign)
+        {
+            int fontHeight = (int)_presenter.ModelToCanvas(height);
+            position = _presenter.ModelToCanvas(position);
+            string fontFamily = fontName == "" ? "Arial" : fontName;
+
+            FontStyle fontStyle = FontStyle.Regular;
+            Font font = new Font(fontFamily, (int)fontHeight, fontStyle);
+            StringFormat format = new StringFormat();
+            format.Alignment = StringAlignment.Near;
+            format.LineAlignment = StringAlignment.Far;
+            switch (textAlign)
+            {
+                case TextAlignment.LeftBottom:
+                    format.Alignment = StringAlignment.Near;
+                    format.LineAlignment = StringAlignment.Far;
+                    break;
+
+                case TextAlignment.LeftMiddle:
+                    format.Alignment = StringAlignment.Near;
+                    format.LineAlignment = StringAlignment.Center;
+                    break;
+
+                case TextAlignment.LeftTop:
+                    format.Alignment = StringAlignment.Near;
+                    format.LineAlignment = StringAlignment.Near;
+                    break;
+
+                case TextAlignment.CenterBottom:
+                    format.Alignment = StringAlignment.Center;
+                    format.LineAlignment = StringAlignment.Far;
+                    break;
+
+                case TextAlignment.CenterMiddle:
+                    format.Alignment = StringAlignment.Center;
+                    format.LineAlignment = StringAlignment.Center;
+                    break;
+
+                case TextAlignment.CenterTop:
+                    format.Alignment = StringAlignment.Center;
+                    format.LineAlignment = StringAlignment.Near;
+                    break;
+
+                case TextAlignment.RightBottom:
+                    format.Alignment = StringAlignment.Far;
+                    format.LineAlignment = StringAlignment.Far;
+                    break;
+
+                case TextAlignment.RightMiddle:
+                    format.Alignment = StringAlignment.Far;
+                    format.LineAlignment = StringAlignment.Center;
+                    break;
+
+                case TextAlignment.RightTop:
+                    format.Alignment = StringAlignment.Far;
+                    format.LineAlignment = StringAlignment.Near;
+                    break;
+            }
+            PointF pos = new PointF((float)position.x, (float)position.y);
+            graphics.DrawString(text, font, _brush, pos, format);
+
+            SizeF size = graphics.MeasureString(text, font, pos, format);
+            double w = _presenter.CanvasToModel(size.Width);
+            double h = _presenter.CanvasToModel(size.Height);
+            return new LitMath.Vector2(w, h);
+        }
+    }
+
     internal class Presenter : IPresenter
     {
         private ICanvas _canvas = null;
@@ -17,7 +268,6 @@ namespace LitCAD
 
         //
         private CommandsMgr _cmdsMgr = null;
-        private EntityDrawerMgr _entityDrawerMgr = null;
 
         private Pointer _pointer = null;
         internal Pointer pointer
@@ -35,7 +285,7 @@ namespace LitCAD
         private Origin _origin;
 
         //
-        public Document document
+        public IDocument document
         {
             get { return _document; }
         }
@@ -99,8 +349,6 @@ namespace LitCAD
             _cmdsMgr.commandFinished += this.OnCommandFinished;
             _cmdsMgr.commandCanceled += this.OnCommandCanceled;
 
-            _entityDrawerMgr = new EntityDrawerMgr(this);
-
             _pointer = new Pointer(this);
 
             _dynamicInputer = new DynamicInputer(this);
@@ -160,7 +408,7 @@ namespace LitCAD
             text.height = 5;
             text.font = "Arial";
             text.position = new LitMath.Vector2(0, 0);
-            text.alignment = TextAlignment.RightBottom;
+            text.alignment = LitCAD.DatabaseServices.TextAlignment.RightBottom;
             modelSpace.AppendEntity(text);
 
             //Text text2 = new Text();
@@ -173,7 +421,70 @@ namespace LitCAD
 
         public void DrawEntity(Graphics graphics, Entity entity, Pen pen = null)
         {
-            _entityDrawerMgr.DrawEntity(graphics, entity, pen);
+            _gd.graphics = graphics;
+            _gd.presenter = this;
+            _gd.pen = GetPen(entity);
+            if (entity is Text)
+            {
+                _gd.brush = GetBrush(entity);
+            }
+            entity.Draw(_gd);
+        }
+
+        protected Pen GetPen(Entity entity)
+        {
+            if (entity.database != null)
+            {
+                return GDIResMgr.Instance.GetPen(entity.colorValue, 1);
+            }
+            else
+            {
+                if (entity.color.colorMethod == Colors.ColorMethod.ByLayer)
+                {
+                    Database db = (this.document as Document).database;
+                    Layer layer = db.GetObject(entity.layerId) as Layer;
+                    if (layer != null)
+                    {
+                        return GDIResMgr.Instance.GetPen(layer.colorValue, 1);
+                    }
+                    else
+                    {
+                        return GDIResMgr.Instance.GetPen(entity.colorValue, 1);
+                    }
+                }
+                else
+                {
+                    return GDIResMgr.Instance.GetPen(entity.colorValue, 1);
+                }
+            }
+        }
+
+        protected Brush GetBrush(Entity entity)
+        {
+            if (entity.database != null)
+            {
+                return GDIResMgr.Instance.GetBrush(entity.colorValue);
+            }
+            else
+            {
+                if (entity.color.colorMethod == Colors.ColorMethod.ByLayer)
+                {
+                    Database db = (this.document as Document).database;
+                    Layer layer = db.GetObject(entity.layerId) as Layer;
+                    if (layer != null)
+                    {
+                        return GDIResMgr.Instance.GetBrush(layer.colorValue);
+                    }
+                    else
+                    {
+                        return GDIResMgr.Instance.GetBrush(entity.colorValue);
+                    }
+                }
+                else
+                {
+                    return GDIResMgr.Instance.GetBrush(entity.colorValue);
+                }
+            }
         }
 
         public void AppendEntity(Entity entity)
@@ -185,6 +496,7 @@ namespace LitCAD
         /// <summary>
         /// 绘制画布
         /// </summary>
+        private GraphicsDraw _gd = new GraphicsDraw();
         public void OnPaintCanvas(PaintEventArgs e)
         {
             int canvasWidth = (int)_canvas.width;
@@ -209,17 +521,31 @@ namespace LitCAD
                 // 绘制背景
                 graphics.Clear(Color.FromArgb(33, 40, 48));
 
+                // 
+                _gd.graphics = graphics;
+                _gd.presenter = this;
+
                 // 绘制数据库图元对象
                 Block modelSpace = _document.database.blockTable[_document.currentBlockName] as Block;
                 foreach (Entity entity in modelSpace)
                 {
                     if (_document.selections.IsObjectSelected(entity.id))
                     {
-                        this.DrawEntity(graphics, entity, GDIResMgr.Instance.GetEntitySelectedPen(entity));
+                        _gd.pen = GDIResMgr.Instance.GetEntitySelectedPen(entity);
+                        if (entity is Text)
+                        {
+                            _gd.brush = GDIResMgr.Instance.GetEntitySelectedBrush(entity);
+                        }
+                        entity.Draw(_gd);
                     }
                     else
                     {
-                        this.DrawEntity(graphics, entity);
+                        _gd.pen = GetPen(entity);
+                        if (entity is Text)
+                        {
+                            _gd.brush = GetBrush(entity);
+                        }
+                        entity.Draw(_gd);
                     }
                 }
             }
@@ -409,7 +735,7 @@ namespace LitCAD
                 }
                 else if (e.KeyCode == Keys.Delete)
                 {
-                    if (document.selections.Count > 0)
+                    if ((document as Document).selections.Count > 0)
                     {
                         Commands.Modify.DeleteCmd cmd = new Commands.Modify.DeleteCmd();
                         this.OnCommand(cmd);
@@ -456,9 +782,9 @@ namespace LitCAD
         /// <summary>
         /// 执行命令
         /// </summary>
-        public void OnCommand(Commands.Command cmd)
+        public void OnCommand(ICommand cmd)
         {
-            _cmdsMgr.DoCommand(cmd);
+            _cmdsMgr.DoCommand(cmd as Commands.Command);
         }
 
         /// <summary>

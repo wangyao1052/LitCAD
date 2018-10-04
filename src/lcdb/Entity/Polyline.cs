@@ -28,6 +28,24 @@ namespace LitCAD.DatabaseServices
             set { _closed = value; }
         }
 
+        /// <summary>
+        /// 绘制函数
+        /// </summary>
+        public override void Draw(IGraphicsDraw gd)
+        {
+            int numOfVertices = NumberOfVertices;
+            for (int i = 0; i < numOfVertices - 1; ++i)
+            {
+                gd.DrawLine(GetPointAt(i), GetPointAt(i + 1));
+            }
+
+            if (closed
+                && numOfVertices > 2)
+            {
+                gd.DrawLine(GetPointAt(numOfVertices - 1), GetPointAt(0));
+            }
+        }
+
         public void AddVertexAt(int index, LitMath.Vector2 point)
         {
             _vertices.Insert(index, point);

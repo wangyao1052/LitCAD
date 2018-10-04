@@ -168,9 +168,6 @@
     <Compile Include="Presenter\DynamicInputer\DynInputResult\DynInputResultT.cs" />
     <Compile Include="Presenter\DynamicInputer\DynInputResult\DynInputStatus.cs" />
     <Compile Include="Presenter\DynamicInputer\DynInputCtrl\DynInputPoint.cs" />
-    <Compile Include="Presenter\EntityDrawer\RayDrawer.cs" />
-    <Compile Include="Presenter\EntityDrawer\TextDrawer.cs" />
-    <Compile Include="Presenter\EntityDrawer\XlineDrawer.cs" />
     <Compile Include="Presenter\PickupBox\RayHitter.cs" />
     <Compile Include="Presenter\PickupBox\TextHitter.cs" />
     <Compile Include="Presenter\PickupBox\XlineHitter.cs" />
@@ -207,12 +204,6 @@
     <Compile Include="Presenter\CSYS.cs" />
     <Compile Include="Presenter\Anchor\EntityAnchor.cs" />
     <Compile Include="Presenter\Anchor\LineAnchor.cs" />
-    <Compile Include="Presenter\EntityDrawer\ArcDrawer.cs" />
-    <Compile Include="Presenter\EntityDrawer\CircleDrawer.cs" />
-    <Compile Include="Presenter\EntityDrawer\EntityDrawer.cs" />
-    <Compile Include="Presenter\EntityDrawer\_EntityDrawerMgr.cs" />
-    <Compile Include="Presenter\EntityDrawer\LineDrawer.cs" />
-    <Compile Include="Presenter\EntityDrawer\PolylineDrawer.cs" />
     <Compile Include="Presenter\GDIResMgr.cs" />
     <Compile Include="Presenter\LocateCross.cs" />
     <Compile Include="Presenter\Origin.cs" />
@@ -230,8 +221,6 @@
     <Compile Include="Windows\DocumentForm.Designer.cs">
       <DependentUpon>DocumentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interface\ICanvas.cs" />
-    <Compile Include="Interface\IPresenter.cs" />
     <Compile Include="Windows\Canvas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -318,6 +307,10 @@
     <ProjectReference Include="..\lcdb\lcdb.csproj">
       <Project>{A984479A-E0FC-45E0-8CA3-EB39D197E652}</Project>
       <Name>lcdb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\lcinterface\lcinterface.csproj">
+      <Project>{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}</Project>
+      <Name>lcinterface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

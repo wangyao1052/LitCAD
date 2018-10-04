@@ -173,6 +173,14 @@ namespace LitCAD.DatabaseServices
         }
 
         /// <summary>
+        /// 绘制函数
+        /// </summary>
+        public override void Draw(IGraphicsDraw gd)
+        {
+            gd.DrawArc(_center, _radius, startAngle * 180.0 / Math.PI, endAngle * 180.0 / Math.PI);
+        }
+
+        /// <summary>
         /// 克隆函数
         /// </summary>
         public override object Clone()

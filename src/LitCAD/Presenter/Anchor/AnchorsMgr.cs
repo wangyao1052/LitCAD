@@ -80,7 +80,7 @@ namespace LitCAD
 
         internal void Update()
         {
-            Document doc = _presenter.document;
+            Document doc = _presenter.document as Document;
             if (doc.selections.Count == 0)
             {
                 _anchors.Clear();

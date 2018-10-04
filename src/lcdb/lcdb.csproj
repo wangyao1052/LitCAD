@@ -134,6 +134,12 @@
     <Compile Include="Table\LayerTable.cs" />
     <Compile Include="Table\TableIds.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\lcinterface\lcinterface.csproj">
+      <Project>{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}</Project>
+      <Name>lcinterface</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

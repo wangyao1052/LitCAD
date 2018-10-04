@@ -6,7 +6,7 @@ using LitCAD.Colors;
 
 namespace LitCAD.ApplicationServices
 {
-    public class Document
+    public class Document : IDocument
     {
         /// <summary>
         /// 数据库

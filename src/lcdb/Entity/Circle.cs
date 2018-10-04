@@ -57,6 +57,14 @@ namespace LitCAD.DatabaseServices
         }
 
         /// <summary>
+        /// 绘制函数
+        /// </summary>
+        public override void Draw(IGraphicsDraw gd)
+        {
+            gd.DrawCircle(_center, _radius);
+        }
+
+        /// <summary>
         /// 克隆函数
         /// </summary>
         public override object Clone()

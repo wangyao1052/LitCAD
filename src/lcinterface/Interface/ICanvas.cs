@@ -4,7 +4,10 @@ using System.Text;
 
 namespace LitCAD
 {
-    internal interface ICanvas
+    /// <summary>
+    /// 画布接口
+    /// </summary>
+    public interface ICanvas
     {
         // 画布宽
         double width { get; }

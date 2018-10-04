@@ -193,7 +193,7 @@ namespace LitCAD.UI
                                 List<Selection> sels = _pickupBox.Select(_presenter.currentBlock);
                                 if (sels.Count > 0)
                                 {
-                                    _presenter.document.selections.Add(sels);
+                                    (_presenter.document as Document).selections.Add(sels);
                                 }
                                 else
                                 {
@@ -223,7 +223,7 @@ namespace LitCAD.UI
                             List<Selection> sels = _pickupBox.Select(_presenter.currentBlock);
                             if (sels.Count > 0)
                             {
-                                _presenter.document.selections.Add(sels);
+                                (_presenter.document as Document).selections.Add(sels);
                             }
                             else
                             {
@@ -258,7 +258,7 @@ namespace LitCAD.UI
                     List<Selection> sels = _selRect.Select(_presenter.currentBlock);
                     if (sels.Count > 0)
                     {
-                        _presenter.document.selections.Add(sels);
+                        (_presenter.document as Document).selections.Add(sels);
                     }
                 }
                 _selRect = null;
@@ -321,10 +321,10 @@ namespace LitCAD.UI
                             {
                                 foreach (Selection sel in sels)
                                 {
-                                    DBObject dbobj = _presenter.document.database.GetObject(sel.objectId);
+                                    DBObject dbobj = (_presenter.document as Document).database.GetObject(sel.objectId);
                                     if (dbobj != null && dbobj is Text)
                                     {
-                                        _presenter.document.selections.Clear();
+                                        (_presenter.document as Document).selections.Clear();
                                     }
                                 }
                             }

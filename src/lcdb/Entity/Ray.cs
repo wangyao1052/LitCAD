@@ -86,6 +86,14 @@ namespace LitCAD.DatabaseServices
         }
 
         /// <summary>
+        /// 绘制函数
+        /// </summary>
+        public override void Draw(IGraphicsDraw gd)
+        {
+            gd.DrawRay(_basePoint, _direction);
+        }
+
+        /// <summary>
         /// 克隆函数
         /// </summary>
         public override object Clone()

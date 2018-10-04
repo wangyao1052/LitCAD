@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LitCAD", "LitCAD\LitCAD.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lcdb", "lcdb\lcdb.csproj", "{A984479A-E0FC-45E0-8CA3-EB39D197E652}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lcinterface", "lcinterface\lcinterface.csproj", "{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{A984479A-E0FC-45E0-8CA3-EB39D197E652}.Release|x64.Build.0 = Release|x64
 		{A984479A-E0FC-45E0-8CA3-EB39D197E652}.Release|x86.ActiveCfg = Release|x86
 		{A984479A-E0FC-45E0-8CA3-EB39D197E652}.Release|x86.Build.0 = Release|x86
+		{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}.Release|x64.ActiveCfg = Release|Any CPU
+		{39C4BCAF-8AAE-4410-9BC4-B586B18E964A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
