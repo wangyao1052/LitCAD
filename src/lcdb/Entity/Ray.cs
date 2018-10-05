@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LitCAD.DatabaseServices
 {
@@ -82,7 +83,7 @@ namespace LitCAD.DatabaseServices
         public Ray(LitMath.Vector2 basePoint, LitMath.Vector2 direction)
         {
             _basePoint = basePoint;
-            _direction = direction;
+            _direction = direction.normalized;
         }
 
         /// <summary>
@@ -126,6 +127,17 @@ namespace LitCAD.DatabaseServices
             _basePoint = transform * _basePoint;
             refPnt = transform * refPnt;
             _direction = (refPnt - _basePoint).normalized;
+        }
+
+        /// <summary>
+        /// 对象捕捉点
+        /// </summary>
+        public override List<ObjectSnapPoint> GetSnapPoints()
+        {
+            List<ObjectSnapPoint> snapPnts = new List<ObjectSnapPoint>();
+            snapPnts.Add(new ObjectSnapPoint(ObjectSnapMode.End, _basePoint));
+
+            return snapPnts;
         }
     }
 }

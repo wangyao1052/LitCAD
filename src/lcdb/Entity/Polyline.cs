@@ -136,5 +136,26 @@ namespace LitCAD.DatabaseServices
                 _vertices[i] = transform * _vertices[i];
             }
         }
+
+        /// <summary>
+        /// 对象捕捉点
+        /// </summary>
+        public override List<ObjectSnapPoint> GetSnapPoints()
+        {
+            List<ObjectSnapPoint> snapPnts = new List<ObjectSnapPoint>();
+            int numOfVertices = this.NumberOfVertices;
+            for (int i = 0; i < numOfVertices; ++i)
+            {
+                snapPnts.Add(new ObjectSnapPoint(ObjectSnapMode.End, GetPointAt(i)));
+
+                if (i != numOfVertices - 1)
+                {
+                    snapPnts.Add(
+                        new ObjectSnapPoint(ObjectSnapMode.Mid, (GetPointAt(i) + GetPointAt(i + 1)) / 2));
+                }
+            }
+
+            return snapPnts;
+        }
     }
 }

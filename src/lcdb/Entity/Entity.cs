@@ -149,5 +149,13 @@ namespace LitCAD.DatabaseServices
                 block.RemoveEntity(this);
             }
         }
+
+        /// <summary>
+        /// 对象捕捉
+        /// </summary>
+        public virtual List<ObjectSnapPoint> GetSnapPoints()
+        {
+            return null;
+        }
     }
 }

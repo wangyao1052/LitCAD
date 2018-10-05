@@ -8,7 +8,7 @@
     <ProjectGuid>{A984479A-E0FC-45E0-8CA3-EB39D197E652}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>lcdb</RootNamespace>
+    <RootNamespace>LitCAD.DatabaseServices</RootNamespace>
     <AssemblyName>lcdb</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -125,6 +125,8 @@
     <Compile Include="MathUtils.cs" />
     <Compile Include="ObjectId.cs" />
     <Compile Include="ObjectIdMgr.cs" />
+    <Compile Include="ObjectSnapType.cs" />
+    <Compile Include="ObjectSnapPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableRecord\Block.cs" />
     <Compile Include="TableRecord\DBTableRecord.cs" />

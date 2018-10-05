@@ -66,10 +66,10 @@ namespace LitCAD.UI
             get { return _anchorMgr.currentAnchor; }
         }
 
-        internal SnapNode currentSnapNode
-        {
-            get { return _snapNodesMgr.currentSnapNode; }
-        }
+        //internal SnapNode currentSnapNode
+        //{
+        //    get { return _snapNodesMgr.currentSnapNode; }
+        //}
 
         /// <summary>
         /// 尺寸
@@ -392,7 +392,10 @@ namespace LitCAD.UI
                             (float)(currSnapPointInCanvas.x - _bitmap.Width / 2),
                             (float)(currSnapPointInCanvas.y - _bitmap.Height / 2));
 
-                        _snapNodesMgr.OnPaint(graphics);
+                        CanvasDraw canvasDraw = new CanvasDraw();
+                        canvasDraw.presenter = _presenter;
+                        canvasDraw.graphics = graphics;
+                        _snapNodesMgr.OnPaint(canvasDraw);
                     }
                     break;
 

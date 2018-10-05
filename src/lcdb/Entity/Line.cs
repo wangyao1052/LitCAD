@@ -93,5 +93,18 @@ namespace LitCAD.DatabaseServices
             _startPoint = transform * _startPoint;
             _endPoint = transform * _endPoint;
         }
+
+        /// <summary>
+        /// 对象捕捉点
+        /// </summary>
+        public override List<ObjectSnapPoint> GetSnapPoints()
+        {
+            List<ObjectSnapPoint> snapPnts = new List<ObjectSnapPoint>();
+            snapPnts.Add(new ObjectSnapPoint(ObjectSnapMode.End, _startPoint));
+            snapPnts.Add(new ObjectSnapPoint(ObjectSnapMode.End, _endPoint));
+            snapPnts.Add(new ObjectSnapPoint(ObjectSnapMode.Mid, (_startPoint + _endPoint) / 2));
+
+            return snapPnts;
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LitCAD.DatabaseServices
 {
@@ -97,6 +98,17 @@ namespace LitCAD.DatabaseServices
 
             _center = transform * _center;
             _radius = (transform * pnt - _center).length;
+        }
+
+        /// <summary>
+        /// 对象捕捉点
+        /// </summary>
+        public override List<ObjectSnapPoint> GetSnapPoints()
+        {
+            List<ObjectSnapPoint> snapPnts = new List<ObjectSnapPoint>();
+            snapPnts.Add(new ObjectSnapPoint(ObjectSnapMode.Center, _center));
+
+            return snapPnts;
         }
     }
 }

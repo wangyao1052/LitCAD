@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LitCAD.DatabaseServices
 {
@@ -182,6 +183,17 @@ namespace LitCAD.DatabaseServices
         public override void TransformBy(LitMath.Matrix3 transform)
         {
             _position = transform * _position;
+        }
+
+        /// <summary>
+        /// 对象捕捉点
+        /// </summary>
+        public override List<ObjectSnapPoint> GetSnapPoints()
+        {
+            List<ObjectSnapPoint> snapPnts = new List<ObjectSnapPoint>();
+            snapPnts.Add(new ObjectSnapPoint(ObjectSnapMode.End, _position));
+
+            return snapPnts;
         }
     }
 }

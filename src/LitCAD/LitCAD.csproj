@@ -174,7 +174,6 @@
     <Compile Include="Presenter\SelectRectangle\RayRS.cs" />
     <Compile Include="Presenter\SelectRectangle\TextRS.cs" />
     <Compile Include="Presenter\SelectRectangle\XlineRS.cs" />
-    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostText.cs" />
     <Compile Include="Windows\DynamicInputTextBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -241,16 +240,7 @@
     <Compile Include="Presenter\SelectRectangle\LineRS.cs" />
     <Compile Include="Presenter\SelectRectangle\PolylineRS.cs" />
     <Compile Include="Presenter\SelectRectangle\SelectRectangle.cs" />
-    <Compile Include="Presenter\SnapNodeHost\SnapNodeHost.cs" />
-    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostArc.cs" />
-    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostCircle.cs" />
-    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostLine.cs" />
-    <Compile Include="Presenter\SnapNodeHost\SnapNodeHostPolyline.cs" />
     <Compile Include="Presenter\SnapNodesMgr.cs" />
-    <Compile Include="Presenter\SnapNode\SnapNode.cs" />
-    <Compile Include="Presenter\SnapNode\SnapNodeCenter.cs" />
-    <Compile Include="Presenter\SnapNode\SnapNodeEnd.cs" />
-    <Compile Include="Presenter\SnapNode\SnapNodeMiddle.cs" />
     <Compile Include="Presenter\XorGDI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

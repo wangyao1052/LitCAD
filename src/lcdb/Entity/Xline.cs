@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LitCAD.DatabaseServices
 {
@@ -94,6 +95,14 @@ namespace LitCAD.DatabaseServices
             _basePoint = transform * _basePoint;
             refPnt = transform * refPnt;
             _direction = (refPnt - _basePoint).normalized;
+        }
+
+        /// <summary>
+        /// 对象捕捉点
+        /// </summary>
+        public override List<ObjectSnapPoint> GetSnapPoints()
+        {
+            return null;
         }
     }
 }
