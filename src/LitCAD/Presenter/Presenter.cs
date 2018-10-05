@@ -202,6 +202,10 @@ namespace LitCAD
         public LitMath.Vector2 DrawText(LitMath.Vector2 position, string text, double height, string fontName, TextAlignment textAlign)
         {
             int fontHeight = (int)_presenter.ModelToCanvas(height);
+            if (fontHeight <= 0)
+            {
+                return new LitMath.Vector2(0, 0);
+            }
             position = _presenter.ModelToCanvas(position);
             string fontFamily = fontName == "" ? "Arial" : fontName;
 
@@ -441,6 +445,10 @@ namespace LitCAD
         public LitMath.Vector2 DrawText(LitMath.Vector2 position, string text, double height, string fontName, TextAlignment textAlign)
         {
             int fontHeight = (int)height;
+            if (fontHeight <= 0)
+            {
+                return new LitMath.Vector2(0, 0);
+            }
             string fontFamily = fontName == "" ? "Arial" : fontName;
 
             FontStyle fontStyle = FontStyle.Regular;
