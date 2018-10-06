@@ -392,10 +392,8 @@ namespace LitCAD.UI
                             (float)(currSnapPointInCanvas.x - _bitmap.Width / 2),
                             (float)(currSnapPointInCanvas.y - _bitmap.Height / 2));
 
-                        CanvasDraw canvasDraw = new CanvasDraw();
-                        canvasDraw.presenter = _presenter;
-                        canvasDraw.graphics = graphics;
-                        _snapNodesMgr.OnPaint(canvasDraw);
+                        _presenter.canvasDraw.graphics = graphics;
+                        _snapNodesMgr.OnPaint(_presenter.canvasDraw);
                     }
                     break;
 

@@ -52,7 +52,14 @@ namespace LitCAD
         public Presenter presenter
         {
             get { return _presenter; }
-            set { _presenter = value; }
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public WorldDraw(Presenter presenter)
+        {
+            _presenter = presenter;
         }
 
         public void DrawLine(LitMath.Vector2 startPoint, LitMath.Vector2 endPoint)
@@ -310,7 +317,14 @@ namespace LitCAD
         public Presenter presenter
         {
             get { return _presenter; }
-            set { _presenter = value; }
+        }
+
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        public CanvasDraw(Presenter presenter)
+        {
+            _presenter = presenter;
         }
 
         public void DrawLine(LitMath.Vector2 startPoint, LitMath.Vector2 endPoint)
@@ -576,6 +590,19 @@ namespace LitCAD
         private double _zoomMin = 1e-4;
         private double _zoomMax = 1e4;
 
+        //
+        public WorldDraw worldDraw
+        {
+            get { return _worldDraw; }
+        }
+        private WorldDraw _worldDraw = null;
+
+        public CanvasDraw canvasDraw
+        {
+            get { return _canvasDraw; }
+        }
+        private CanvasDraw _canvasDraw = null;
+
         /// <summary>
         /// Current block
         /// </summary>
@@ -606,6 +633,9 @@ namespace LitCAD
             _dynamicInputer.cmdInput.cancel += this.OnCmdInputResurn;
 
             _origin = new Origin(this);
+
+            _worldDraw = new WorldDraw(this);
+            _canvasDraw = new CanvasDraw(this);
 
             TestData();
         }
@@ -671,14 +701,13 @@ namespace LitCAD
 
         public void DrawEntity(Graphics graphics, Entity entity, Pen pen = null)
         {
-            _gd.graphics = graphics;
-            _gd.presenter = this;
-            _gd.pen = GetPen(entity);
+            _worldDraw.graphics = graphics;
+            _worldDraw.pen = GetPen(entity);
             if (entity is Text)
             {
-                _gd.brush = GetBrush(entity);
+                _worldDraw.brush = GetBrush(entity);
             }
-            entity.Draw(_gd);
+            entity.Draw(_worldDraw);
         }
 
         protected Pen GetPen(Entity entity)
@@ -746,7 +775,6 @@ namespace LitCAD
         /// <summary>
         /// 绘制画布
         /// </summary>
-        private WorldDraw _gd = new WorldDraw();
         public void OnPaintCanvas(PaintEventArgs e)
         {
             int canvasWidth = (int)_canvas.width;
@@ -772,8 +800,8 @@ namespace LitCAD
                 graphics.Clear(Color.FromArgb(33, 40, 48));
 
                 // 
-                _gd.graphics = graphics;
-                _gd.presenter = this;
+                _worldDraw.graphics = graphics;
+                _canvasDraw.graphics = graphics;
 
                 // 绘制数据库图元对象
                 Block modelSpace = _document.database.blockTable[_document.currentBlockName] as Block;
@@ -781,24 +809,26 @@ namespace LitCAD
                 {
                     if (_document.selections.IsObjectSelected(entity.id))
                     {
-                        _gd.pen = GDIResMgr.Instance.GetEntitySelectedPen(entity);
+                        _worldDraw.pen = GDIResMgr.Instance.GetEntitySelectedPen(entity);
                         if (entity is Text)
                         {
-                            _gd.brush = GDIResMgr.Instance.GetEntitySelectedBrush(entity);
+                            _worldDraw.brush = GDIResMgr.Instance.GetEntitySelectedBrush(entity);
                         }
-                        entity.Draw(_gd);
+                        entity.Draw(_worldDraw);
                     }
                     else
                     {
-                        _gd.pen = GetPen(entity);
+                        _worldDraw.pen = GetPen(entity);
                         if (entity is Text)
                         {
-                            _gd.brush = GetBrush(entity);
+                            _worldDraw.brush = GetBrush(entity);
                         }
-                        entity.Draw(_gd);
+                        entity.Draw(_worldDraw);
                     }
                 }
             }
+            _worldDraw.graphics = e.Graphics;
+            _canvasDraw.graphics = e.Graphics;
             
             // 双缓冲:将图片绘制到画布
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
