@@ -177,7 +177,7 @@ namespace LitCAD.DatabaseServices
         /// </summary>
         public override void Draw(IGraphicsDraw gd)
         {
-            gd.DrawArc(_center, _radius, startAngle * 180.0 / Math.PI, endAngle * 180.0 / Math.PI);
+            gd.DrawArc(_center, _radius, startAngle, endAngle);
         }
 
         /// <summary>

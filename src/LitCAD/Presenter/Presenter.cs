@@ -178,20 +178,31 @@ namespace LitCAD
                 (float)radiusInCanvas * 2, (float)radiusInCanvas * 2);
         }
 
+        /// <summary>
+        /// 绘制圆弧,逆时针从startAngle到endAngle
+        /// </summary>
         public void DrawArc(LitMath.Vector2 center, double radius, double startAngle, double endAngle)
         {
+            //
             LitMath.Vector2 centerInCanvas = _presenter.ModelToCanvas(center);
             double radiusInCanvas = _presenter.ModelToCanvas(radius);
-            double startAngleInCanvas = 360 - endAngle;
-            double endAngleInCanvas = 360 - startAngle;
 
+            // GDI为顺时针绘制圆弧,而当前函数为逆时针绘制圆弧
+            double startAngleInCanvas = MathUtils.NormalizeRadianAngle(-startAngle);
+            double endAngleInCanvas = MathUtils.NormalizeRadianAngle(-endAngle);
+
+            //
+            double angle = endAngle - startAngle;
             if (endAngle < startAngle)
-                endAngle += 360;
+            {
+                angle += LitMath.Utils.PI * 2;
+            }
 
+            //
             graphics.DrawArc(pen,
                 (float)(centerInCanvas.x - radiusInCanvas), (float)(centerInCanvas.y - radiusInCanvas),
                 (float)radiusInCanvas * 2, (float)radiusInCanvas * 2,
-                (float)startAngleInCanvas, (float)(endAngleInCanvas - startAngleInCanvas));
+                (float)(startAngleInCanvas * 180.0 / LitMath.Utils.PI), -(float)(angle * 180.0 / LitMath.Utils.PI));
         }
 
         public void DrawRectangle(LitMath.Vector2 position, double width, double height)
@@ -435,18 +446,26 @@ namespace LitCAD
                 (float)radius * 2, (float)radius * 2);
         }
 
+        /// <summary>
+        /// 绘制圆弧,逆时针从startAngle到endAngle
+        /// </summary>
         public void DrawArc(LitMath.Vector2 center, double radius, double startAngle, double endAngle)
         {
-            double sAngle = 360 - endAngle;
-            double eAngle = 360 - startAngle;
+            // GDI为顺时针绘制圆弧,而当前函数为逆时针绘制圆弧
+            double startAngleInCanvas = MathUtils.NormalizeRadianAngle(-startAngle);
+            double endAngleInCanvas = MathUtils.NormalizeRadianAngle(-endAngle);
 
-            if (eAngle < sAngle)
-                eAngle += 360;
+            //
+            double angle = endAngle - startAngle;
+            if (endAngle < startAngle)
+            {
+                angle += LitMath.Utils.PI * 2;
+            }
 
             graphics.DrawArc(pen,
                 (float)(center.x - radius), (float)(center.y - radius),
                 (float)radius * 2, (float)radius * 2,
-                (float)sAngle, (float)(eAngle - sAngle));
+                (float)(startAngleInCanvas * 180.0 / LitMath.Utils.PI), -(float)(angle * 180.0 / LitMath.Utils.PI));
         }
 
         public void DrawRectangle(LitMath.Vector2 position, double width, double height)
