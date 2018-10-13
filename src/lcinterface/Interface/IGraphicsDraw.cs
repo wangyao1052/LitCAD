@@ -25,6 +25,14 @@ namespace LitCAD
 
         void DrawCircle(LitMath.Vector2 center, double radius);
 
+        /// <summary>
+        /// 绘制圆弧
+        /// 以逆时针方式绘制
+        /// </summary>
+        /// <param name="center">圆弧中心</param>
+        /// <param name="radius">圆弧半径</param>
+        /// <param name="startAngle">起始角度(弧度)</param>
+        /// <param name="endAngle">结束角度(弧度)</param>
         void DrawArc(LitMath.Vector2 center, double radius, double startAngle, double endAngle);
 
         void DrawRectangle(LitMath.Vector2 position, double width, double height);

@@ -157,5 +157,20 @@ namespace LitCAD.DatabaseServices
         {
             return null;
         }
+
+        /// <summary>
+        /// 获取夹点
+        /// </summary>
+        public virtual List<GripPoint> GetGripPoints()
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// 设置夹点
+        /// </summary>
+        public virtual void SetGripPointAt(int index, GripPoint gripPoint, LitMath.Vector2 newPosition)
+        {
+        }
     }
 }

@@ -61,16 +61,6 @@ namespace LitCAD.UI
             get { return _currSnapPoint; }
         }
 
-        internal EntityAnchor currentAnchor
-        {
-            get { return _anchorMgr.currentAnchor; }
-        }
-
-        //internal SnapNode currentSnapNode
-        //{
-        //    get { return _snapNodesMgr.currentSnapNode; }
-        //}
-
         /// <summary>
         /// 尺寸
         /// </summary>
@@ -187,7 +177,7 @@ namespace LitCAD.UI
                     {
                         if (e.Button == MouseButtons.Left)
                         {
-                            if (this.currentAnchor == null)
+                            if (_anchorMgr.currentGripPoint == null)
                             {
                                 _pickupBox.center = _pos;
                                 List<Selection> sels = _pickupBox.Select(_presenter.currentBlock);
@@ -203,11 +193,21 @@ namespace LitCAD.UI
                             }
                             else
                             {
-                                Commands.Command anchorCmd = _anchorMgr.currentAnchorCmd;
-                                if (anchorCmd != null)
+                                Database db = (_presenter.document as Document).database;
+                                Entity entity = db.GetObject(_anchorMgr.currentGripEntityId) as Entity;
+                                if (entity != null)
                                 {
-                                    cmd = anchorCmd;
+                                    LitCAD.Commands.GripPointMoveCmd gripMoveCmd = new Commands.GripPointMoveCmd(
+                                        entity, _anchorMgr.currentGripPointIndex, _anchorMgr.currentGripPoint);
+                                    cmd = gripMoveCmd;
                                 }
+
+                                
+                                //Commands.Command anchorCmd = _anchorMgr.currentAnchorCmd;
+                                //if (anchorCmd != null)
+                                //{
+                                //    cmd = anchorCmd;
+                                //}
                             }
                         }
                     }
@@ -313,7 +313,7 @@ namespace LitCAD.UI
                 case Mode.Default:
                     if (e.Button == MouseButtons.Left)
                     {
-                        if (this.currentAnchor == null)
+                        if (_anchorMgr.currentGripPoint == null)
                         {
                             _pickupBox.center = _pos;
                             List<Selection> sels = _pickupBox.Select(_presenter.currentBlock);
@@ -407,6 +407,15 @@ namespace LitCAD.UI
 
         internal void OnSelectionChanged()
         {
+            if (_isShowAnchor)
+            {
+                _anchorMgr.Update();
+            }
+        }
+
+        internal void UpdateGripPoints()
+        {
+            _anchorMgr.Clear();
             if (_isShowAnchor)
             {
                 _anchorMgr.Update();

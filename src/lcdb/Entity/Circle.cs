@@ -110,5 +110,35 @@ namespace LitCAD.DatabaseServices
 
             return snapPnts;
         }
+
+        /// <summary>
+        /// 获取夹点
+        /// </summary>
+        public override List<GripPoint> GetGripPoints()
+        {
+            List<GripPoint> gripPnts = new List<GripPoint>();
+            gripPnts.Add(new GripPoint(GripPointType.Center, _center));
+            gripPnts.Add(new GripPoint(GripPointType.Quad, _center + new LitMath.Vector2(_radius, 0)));
+            gripPnts.Add(new GripPoint(GripPointType.Quad, _center + new LitMath.Vector2(0, _radius)));
+            gripPnts.Add(new GripPoint(GripPointType.Quad, _center + new LitMath.Vector2(-_radius, 0)));
+            gripPnts.Add(new GripPoint(GripPointType.Quad, _center + new LitMath.Vector2(0, -_radius)));
+            
+            return gripPnts;
+        }
+
+        /// <summary>
+        /// 设置夹点
+        /// </summary>
+        public override void SetGripPointAt(int index, GripPoint gripPoint, LitMath.Vector2 newPosition)
+        {
+            if (index == 0)
+            {
+                _center = newPosition;
+            }
+            else if (index >= 1 && index <= 4)
+            {
+                _radius = (newPosition - _center).length;
+            }
+        }
     }
 }

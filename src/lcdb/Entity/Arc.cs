@@ -251,5 +251,102 @@ namespace LitCAD.DatabaseServices
 
             return snapPnts;
         }
+
+        /// <summary>
+        /// 获取夹点
+        /// </summary>
+        public override List<GripPoint> GetGripPoints()
+        {
+            List<GripPoint> gripPnts = new List<GripPoint>();
+            //
+            gripPnts.Add(new GripPoint(GripPointType.Center, _center));
+            //
+            GripPoint startGripPnt = new GripPoint(GripPointType.End, startPoint);
+            startGripPnt.xData1 = middlePoint;
+            gripPnts.Add(startGripPnt);
+            //
+            GripPoint endGripPnt = new GripPoint(GripPointType.End, endPoint);
+            endGripPnt.xData1 = middlePoint;
+            gripPnts.Add(endGripPnt);
+            //
+            gripPnts.Add(new GripPoint(GripPointType.Mid, middlePoint));
+
+            return gripPnts;
+        }
+
+        /// <summary>
+        /// 设置夹点
+        /// </summary>
+        public override void SetGripPointAt(int index, GripPoint gripPoint, LitMath.Vector2 newPosition)
+        {
+            if (index == 0)
+            {
+                _center = newPosition;
+            }
+            else if (index >= 1 && index <= 3)
+            {
+                LitMath.Vector2 startPoint = this.startPoint;
+                LitMath.Vector2 endPoint = this.endPoint;
+                LitMath.Vector2 middlePoint = this.middlePoint;
+
+                if (index == 1)
+                {
+                    startPoint = newPosition;
+                    middlePoint = (LitMath.Vector2)gripPoint.xData1;
+                }
+                else if (index == 2)
+                {
+                    endPoint = newPosition;
+                    middlePoint = (LitMath.Vector2)gripPoint.xData1;
+                }
+                else if (index == 3)
+                {
+                    middlePoint = newPosition;
+                }
+
+                LitMath.Circle2 newCircle = LitMath.Circle2.From3Points(
+                    startPoint, middlePoint, endPoint);
+                if (newCircle.radius > 0)
+                {
+                    LitMath.Vector2 xPositive = new LitMath.Vector2(1, 0);
+                    double startAngle = LitMath.Vector2.SignedAngleInRadian(xPositive,
+                        startPoint - newCircle.center);
+                    double endAngle = LitMath.Vector2.SignedAngleInRadian(xPositive,
+                        endPoint - newCircle.center);
+                    double middleAngle = LitMath.Vector2.SignedAngleInRadian(xPositive,
+                        middlePoint - newCircle.center);
+                    startAngle = MathUtils.NormalizeRadianAngle(startAngle);
+                    endAngle = MathUtils.NormalizeRadianAngle(endAngle);
+                    middleAngle = MathUtils.NormalizeRadianAngle(middleAngle);
+
+                    _center = newCircle.center;
+                    _radius = newCircle.radius;
+                    if (AngleInArcRange(middleAngle, startAngle, endAngle))
+                    {
+                        this.startAngle = startAngle;
+                        this.endAngle = endAngle;
+                    }
+                    else
+                    {
+                        this.startAngle = endAngle;
+                        this.endAngle = startAngle;
+                    }
+                }
+            }
+        }
+
+        private bool AngleInArcRange(double angle, double startAngle, double endAngle)
+        {
+            if (endAngle >= startAngle)
+            {
+                return angle >= startAngle
+                    && angle <= endAngle;
+            }
+            else
+            {
+                return angle >= startAngle
+                    || angle <= endAngle;
+            }
+        }
     }
 }

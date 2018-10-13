@@ -109,9 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationServices\CommonColors.cs" />
-    <Compile Include="Commands\Anchor\RayAnchorCmd.cs" />
-    <Compile Include="Commands\Anchor\TextAnchorCmd.cs" />
-    <Compile Include="Commands\Anchor\XlineAnchorCmd.cs" />
     <Compile Include="Commands\CommandNames.cs" />
     <Compile Include="Commands\CommandsFactory.cs" />
     <Compile Include="Commands\Draw\PolygonCmd.cs" />
@@ -119,6 +116,7 @@
     <Compile Include="Commands\Draw\RectangleCmd.cs" />
     <Compile Include="Commands\Draw\XlineCmd.cs" />
     <Compile Include="Commands\Draw\_DrawCmd.cs" />
+    <Compile Include="Commands\GripPointMoveCmd.cs" />
     <Compile Include="Commands\Modify\MirrorCmd.cs" />
     <Compile Include="Commands\Modify\_ModifyCmd.cs" />
     <Compile Include="Commands\Modify\OffsetCmd.cs" />
@@ -133,11 +131,6 @@
     <Compile Include="ApplicationServices\HashSet.cs" />
     <Compile Include="ApplicationServices\Selection.cs" />
     <Compile Include="ApplicationServices\Selections.cs" />
-    <Compile Include="Commands\Anchor\AnchorCmd.cs" />
-    <Compile Include="Commands\Anchor\ArcAnchorCmd.cs" />
-    <Compile Include="Commands\Anchor\CircleAnchorCmd.cs" />
-    <Compile Include="Commands\Anchor\LineAnchorCmd.cs" />
-    <Compile Include="Commands\Anchor\PolylineAnchorCmd.cs" />
     <Compile Include="Commands\Draw\ArcCmd.cs" />
     <Compile Include="Commands\Draw\CircleCmd.cs" />
     <Compile Include="Commands\Command.cs" />
@@ -152,12 +145,6 @@
     <Compile Include="Commands\Layer\AddLayerCmd.cs" />
     <Compile Include="Commands\Layer\ModifyLayerCmd.cs" />
     <Compile Include="DatabaseUtils\ArcUtils.cs" />
-    <Compile Include="Presenter\Anchor\RayAnchor.cs" />
-    <Compile Include="Presenter\Anchor\RayAnchorCreator.cs" />
-    <Compile Include="Presenter\Anchor\TextAnchor.cs" />
-    <Compile Include="Presenter\Anchor\TextAnchorCreator.cs" />
-    <Compile Include="Presenter\Anchor\XlineAnchor.cs" />
-    <Compile Include="Presenter\Anchor\XlineAnchorCreator.cs" />
     <Compile Include="Presenter\DynamicInputer\DynamicInputer.cs" />
     <Compile Include="Presenter\DynamicInputer\DynInputCtrl\DynInputCtrl.cs" />
     <Compile Include="Presenter\DynamicInputer\DynInputCtrl\DynInputString.cs" />
@@ -192,17 +179,7 @@
     <Compile Include="Commands\Layer\RemoveLayersCmd.cs" />
     <Compile Include="Math\MathUtils.cs" />
     <Compile Include="Presenter\Anchor\AnchorsMgr.cs" />
-    <Compile Include="Presenter\Anchor\ArcAnchor.cs" />
-    <Compile Include="Presenter\Anchor\ArcAnchorCreator.cs" />
-    <Compile Include="Presenter\Anchor\CircleAnchor.cs" />
-    <Compile Include="Presenter\Anchor\CircleAnchorCreator.cs" />
-    <Compile Include="Presenter\Anchor\EntityAnchorCreator.cs" />
-    <Compile Include="Presenter\Anchor\LineAnchorCreator.cs" />
-    <Compile Include="Presenter\Anchor\PolylineAnchor.cs" />
-    <Compile Include="Presenter\Anchor\PolylineAnchorCreator.cs" />
     <Compile Include="Presenter\CSYS.cs" />
-    <Compile Include="Presenter\Anchor\EntityAnchor.cs" />
-    <Compile Include="Presenter\Anchor\LineAnchor.cs" />
     <Compile Include="Presenter\GDIResMgr.cs" />
     <Compile Include="Presenter\LocateCross.cs" />
     <Compile Include="Presenter\Origin.cs" />

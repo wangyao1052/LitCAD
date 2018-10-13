@@ -120,12 +120,14 @@
     <Compile Include="Entity\Text.cs" />
     <Compile Include="Entity\TextAlignment.cs" />
     <Compile Include="Entity\Xline.cs" />
+    <Compile Include="GripPoint.cs" />
+    <Compile Include="GripPointType.cs" />
     <Compile Include="IDatabaseObserver.cs" />
     <Compile Include="LineWeight.cs" />
     <Compile Include="MathUtils.cs" />
     <Compile Include="ObjectId.cs" />
     <Compile Include="ObjectIdMgr.cs" />
-    <Compile Include="ObjectSnapType.cs" />
+    <Compile Include="ObjectSnapMode.cs" />
     <Compile Include="ObjectSnapPoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TableRecord\Block.cs" />

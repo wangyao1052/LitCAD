@@ -157,5 +157,71 @@ namespace LitCAD.DatabaseServices
 
             return snapPnts;
         }
+
+        /// <summary>
+        /// 获取夹点
+        /// </summary>
+        public override List<GripPoint> GetGripPoints()
+        {
+            List<GripPoint> gripPnts = new List<GripPoint>();
+            int numOfVertices = NumberOfVertices;
+            for (int i = 0; i < numOfVertices; ++i)
+            {
+                gripPnts.Add(new GripPoint(GripPointType.End, _vertices[i]));
+            }
+            for (int i = 0; i < numOfVertices - 1; ++i)
+            {
+                GripPoint midGripPnt = new GripPoint(GripPointType.Mid, (_vertices[i] + _vertices[i+1]) / 2);
+                midGripPnt.xData1 = _vertices[i];
+                midGripPnt.xData2 = _vertices[i + 1];
+                gripPnts.Add(midGripPnt);
+            }
+            if (_closed && numOfVertices > 2)
+            {
+                GripPoint midGripPnt = new GripPoint(GripPointType.Mid, (_vertices[0] + _vertices[numOfVertices - 1]) / 2);
+                midGripPnt.xData1 = _vertices[0];
+                midGripPnt.xData2 = _vertices[numOfVertices - 1];
+                gripPnts.Add(midGripPnt);
+            }
+
+            return gripPnts;
+        }
+
+        /// <summary>
+        /// 设置夹点
+        /// </summary>
+        public override void SetGripPointAt(int index, GripPoint gripPoint, LitMath.Vector2 newPosition)
+        {
+            switch (gripPoint.type)
+            {
+                case GripPointType.End:
+                    {
+                        this.SetPointAt(index, newPosition);
+                    }
+                    break;
+
+                case GripPointType.Mid:
+                    {
+                        int numOfVertices = NumberOfVertices;
+                        int i = index - numOfVertices;
+                        if (i >= 0 && i <= numOfVertices-1)
+                        {
+                            int vIndex1st = i;
+                            int vIndex2nd = i + 1;
+                            if (vIndex2nd == numOfVertices)
+                            {
+                                vIndex2nd = 0;
+                            }
+                            LitMath.Vector2 t = newPosition - gripPoint.position;
+                            this.SetPointAt(vIndex1st, (LitMath.Vector2)gripPoint.xData1 + t);
+                            this.SetPointAt(vIndex2nd, (LitMath.Vector2)gripPoint.xData2 + t);
+                        }
+                    }
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }

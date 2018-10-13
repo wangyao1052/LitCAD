@@ -139,5 +139,36 @@ namespace LitCAD.DatabaseServices
 
             return snapPnts;
         }
+
+        /// <summary>
+        /// 获取夹点
+        /// </summary>
+        public override List<GripPoint> GetGripPoints()
+        {
+            List<GripPoint> gripPnts = new List<GripPoint>();
+            gripPnts.Add(new GripPoint(GripPointType.End, _basePoint));
+            gripPnts.Add(new GripPoint(GripPointType.End, _basePoint + 10 * _direction));
+
+            return gripPnts;
+        }
+
+        /// <summary>
+        /// 设置夹点
+        /// </summary>
+        public override void SetGripPointAt(int index, GripPoint gripPoint, LitMath.Vector2 newPosition)
+        {
+            if (index == 0)
+            {
+                _basePoint = newPosition;
+            }
+            else if (index == 1)
+            {
+                LitMath.Vector2 dir = (newPosition - _basePoint).normalized;
+                if (!dir.Equals(new LitMath.Vector2(0, 0)))
+                {
+                    _direction = dir;
+                }
+            }
+        }
     }
 }

@@ -92,7 +92,6 @@ namespace LitCAD.Commands
         {
             this.Commit();
             this.Terminate();
-            
         }
 
         /// <summary>
