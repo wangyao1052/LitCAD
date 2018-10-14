@@ -680,7 +680,7 @@ namespace LitCAD
             polyline.AddVertexAt(polyline.NumberOfVertices, new LitMath.Vector2(0, 0));
             polyline.AddVertexAt(polyline.NumberOfVertices, new LitMath.Vector2(10, 20));
             polyline.AddVertexAt(polyline.NumberOfVertices, new LitMath.Vector2(20, 5));
-            //polyline.SetPointAt(polyline.NumberOfVertices - 1, new LitMath.Vector2(100, 100));
+            polyline.AddVertexAt(polyline.NumberOfVertices, new LitMath.Vector2(30, 25));
             modelSpace.AppendEntity(polyline);
 
             Arc arc = new Arc();
@@ -701,14 +701,14 @@ namespace LitCAD
             ray.direction = new LitMath.Vector2(2, -5);
             modelSpace.AppendEntity(ray);
 
-            Text text = new Text();
-            text.color = Colors.Color.FromRGB(255, 0, 0);
-            text.text = "gabc 北京\n efg";
-            text.height = 5;
-            text.font = "Arial";
-            text.position = new LitMath.Vector2(0, 0);
-            text.alignment = LitCAD.DatabaseServices.TextAlignment.RightBottom;
-            modelSpace.AppendEntity(text);
+            //Text text = new Text();
+            //text.color = Colors.Color.FromRGB(255, 0, 0);
+            //text.text = "gabc 北京\n efg";
+            //text.height = 5;
+            //text.font = "Arial";
+            //text.position = new LitMath.Vector2(0, 0);
+            //text.alignment = LitCAD.DatabaseServices.TextAlignment.RightBottom;
+            //modelSpace.AppendEntity(text);
 
             //Text text2 = new Text();
             //text2.text = "我爱北京天安门\nhello kitty";
