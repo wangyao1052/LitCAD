@@ -19,6 +19,7 @@ namespace LitCAD.DatabaseServices.Filer
         /// 失败则返回false
         /// </returns>
         public abstract bool Write(string name, string value);
+        public abstract bool Write(string name, bool value);
         public abstract bool Write(string name, byte value);
         public abstract bool Write(string name, uint value);
         public abstract bool Write(string name, int value);
@@ -38,6 +39,7 @@ namespace LitCAD.DatabaseServices.Filer
         /// 失败则返回false
         /// </returns>
         public abstract bool Read(string name, out string value);
+        public abstract bool Read(string name, out bool value);
         public abstract bool Read(string name, out byte value);
         public abstract bool Read(string name, out uint value);
         public abstract bool Read(string name, out int value);

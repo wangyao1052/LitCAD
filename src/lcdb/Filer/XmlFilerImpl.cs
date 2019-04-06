@@ -100,6 +100,11 @@ namespace LitCAD.DatabaseServices.Filer
             return true;
         }
 
+        public override bool Write(string name, bool value)
+        {
+            return _Write(name, value);
+        }
+
         public override bool Write(string name, byte value)
         {
             return _Write(name, value);
@@ -159,6 +164,18 @@ namespace LitCAD.DatabaseServices.Filer
             value = node.InnerText;
 
             return true;
+        }
+
+        public override bool Read(string name, out bool value)
+        {
+            XmlNode node = _curXmlNode.SelectSingleNode(name);
+            if (node == null)
+            {
+                value = true;
+                return false;
+            }
+
+            return bool.TryParse(node.InnerText, out value);
         }
 
         public override bool Read(string name, out byte value)
