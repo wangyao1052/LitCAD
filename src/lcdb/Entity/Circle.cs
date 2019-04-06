@@ -6,6 +6,14 @@ namespace LitCAD.DatabaseServices
     public class Circle : Entity
     {
         /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "Circle"; }
+        }
+
+        /// <summary>
         /// 圆心
         /// </summary>
         private LitMath.Vector2 _center = new LitMath.Vector2(0, 0);
@@ -76,6 +84,9 @@ namespace LitCAD.DatabaseServices
             return circle;
         }
 
+        /// <summary>
+        /// 创建圆实例
+        /// </summary>
         protected override DBObject CreateInstance()
         {
             return new Circle();
@@ -139,6 +150,28 @@ namespace LitCAD.DatabaseServices
             {
                 _radius = (newPosition - _center).length;
             }
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public override void XmlOut(Filer.XmlFiler filer)
+        {
+            base.XmlOut(filer);
+
+            filer.Write("center", _center);
+            filer.Write("radius", _radius);
+        }
+
+        /// <summary>
+        /// 读XML
+        /// </summary>
+        public override void XmlIn(Filer.XmlFiler filer)
+        {
+            base.XmlIn(filer);
+
+            filer.Read("center", out _center);
+            filer.Read("radius", out _radius);
         }
     }
 }

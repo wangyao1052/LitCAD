@@ -199,10 +199,13 @@ namespace LitCAD
             }
 
             //
-            graphics.DrawArc(pen,
+            if (radiusInCanvas > 0)
+            {
+                graphics.DrawArc(pen,
                 (float)(centerInCanvas.x - radiusInCanvas), (float)(centerInCanvas.y - radiusInCanvas),
                 (float)radiusInCanvas * 2, (float)radiusInCanvas * 2,
                 (float)(startAngleInCanvas * 180.0 / LitMath.Utils.PI), -(float)(angle * 180.0 / LitMath.Utils.PI));
+            }
         }
 
         public void DrawRectangle(LitMath.Vector2 position, double width, double height)
@@ -656,7 +659,7 @@ namespace LitCAD
             _worldDraw = new WorldDraw(this);
             _canvasDraw = new CanvasDraw(this);
 
-            TestData();
+            //TestData();
         }
 
         private void TestData()

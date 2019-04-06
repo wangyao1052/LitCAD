@@ -103,6 +103,53 @@ namespace LitCAD.Colors
             }
         }
 
+        public override string ToString()
+        {
+            return string.Format("{0}:{1},{2},{3}", _colorMethod.ToString(), _r, _g, _b);
+        }
+
+        internal static bool TryParse(string str, out Color result)
+        {
+            string[] arr = str.Split(':');
+            if (arr.Length != 2)
+            {
+                result = Color.ByLayer;
+                return false;
+            }
+
+            //
+            ColorMethod colorMethod = (ColorMethod)Enum.Parse(typeof(LitCAD.Colors.ColorMethod), arr[0], true);
+
+            //
+            string[] rgb = arr[1].Split(',');
+            if (rgb.Length != 3)
+            {
+                result = Color.ByLayer;
+                return false;
+            }
+
+            byte red = 0;
+            byte green = 0;
+            byte blue = 0;
+            if (byte.TryParse(rgb[0], out red)
+                && byte.TryParse(rgb[1], out green)
+                && byte.TryParse(rgb[2], out blue))
+            {
+                result = new Color();
+                result._colorMethod = colorMethod;
+                result._r = red;
+                result._g = green;
+                result._b = blue;
+
+                return true;
+            }
+            else
+            {
+                result = Color.ByLayer;
+                return false;
+            }
+        }
+
         public override bool Equals(object obj)
         {
             if (!(obj is Color))

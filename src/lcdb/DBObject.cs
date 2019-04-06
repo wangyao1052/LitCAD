@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace LitCAD.DatabaseServices
 {
     public abstract class DBObject : ICloneable
     {
+        /// <summary>
+        /// 类名
+        /// </summary>
+        public virtual string className
+        {
+            get { return "DBObject"; }
+        }
+
         /// <summary>
         /// ID
         /// </summary>
@@ -104,6 +113,9 @@ namespace LitCAD.DatabaseServices
             return dbobj;
         }
 
+        /// <summary>
+        /// 创建实例
+        /// </summary>
         protected abstract DBObject CreateInstance();
 
         /// <summary>
@@ -122,6 +134,22 @@ namespace LitCAD.DatabaseServices
 
         protected virtual void _Erase()
         {
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public virtual void XmlOut(Filer.XmlFiler filer)
+        {
+            filer.Write("id", _id);
+        }
+
+        /// <summary>
+        /// 读XML
+        /// </summary>
+        public virtual void XmlIn(Filer.XmlFiler filer)
+        {
+            filer.Read("id", out _id);
         }
     }
 }

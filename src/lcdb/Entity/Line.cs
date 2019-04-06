@@ -9,6 +9,14 @@ namespace LitCAD.DatabaseServices
     public class Line : Entity
     {
         /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "Line"; }
+        }
+
+        /// <summary>
         /// 起点
         /// </summary>
         private LitMath.Vector2 _startPoint = new LitMath.Vector2();
@@ -132,6 +140,28 @@ namespace LitCAD.DatabaseServices
             {
                 _endPoint = newPosition;
             }
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public override void XmlOut(Filer.XmlFiler filer)
+        {
+            base.XmlOut(filer);
+
+            filer.Write("startPoint", _startPoint);
+            filer.Write("endPoint", _endPoint);
+        }
+
+        /// <summary>
+        /// 读XML
+        /// </summary>
+        public override void XmlIn(Filer.XmlFiler filer)
+        {
+            base.XmlIn(filer);
+
+            filer.Read("startPoint", out _startPoint);
+            filer.Read("endPoint", out _endPoint);
         }
     }
 }

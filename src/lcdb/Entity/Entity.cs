@@ -8,6 +8,14 @@ namespace LitCAD.DatabaseServices
     public abstract class Entity : DBObject
     {
         /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "Entity"; }
+        }
+
+        /// <summary>
         /// 外围边框
         /// </summary>
         public abstract Bounding bounding
@@ -171,6 +179,30 @@ namespace LitCAD.DatabaseServices
         /// </summary>
         public virtual void SetGripPointAt(int index, GripPoint gripPoint, LitMath.Vector2 newPosition)
         {
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public override void XmlOut(Filer.XmlFiler filer)
+        {
+            base.XmlOut(filer);
+
+            filer.Write("color", _color);
+            filer.Write("lineWeight", _lineWeight.ToString());
+            filer.Write("layer", _layerId);
+        }
+
+        /// <summary>
+        /// 读XML
+        /// </summary>
+        public override void XmlIn(Filer.XmlFiler filer)
+        {
+            base.XmlIn(filer);
+
+            filer.Read("color", out _color);
+            filer.Read("lineWeight", out _lineWeight);
+            filer.Read("layer", out _layerId);
         }
     }
 }

@@ -6,6 +6,14 @@ namespace LitCAD.DatabaseServices
     public class Arc : Entity
     {
         /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "Arc"; }
+        }
+
+        /// <summary>
         /// 圆心
         /// </summary>
         private LitMath.Vector2 _center = new LitMath.Vector2(0, 0);
@@ -347,6 +355,32 @@ namespace LitCAD.DatabaseServices
                 return angle >= startAngle
                     || angle <= endAngle;
             }
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public override void XmlOut(Filer.XmlFiler filer)
+        {
+            base.XmlOut(filer);
+
+            filer.Write("center", _center);
+            filer.Write("radius", _radius);
+            filer.Write("startAngle", _startAngle);
+            filer.Write("endAngle", _endAngle);
+        }
+
+        /// <summary>
+        /// 读XML
+        /// </summary>
+        public override void XmlIn(Filer.XmlFiler filer)
+        {
+            base.XmlIn(filer);
+
+            filer.Read("center", out _center);
+            filer.Read("radius", out _radius);
+            filer.Read("startAngle", out _startAngle);
+            filer.Read("endAngle", out _endAngle);
         }
     }
 }

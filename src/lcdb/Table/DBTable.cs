@@ -1,11 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace LitCAD.DatabaseServices
 {
     public abstract class DBTable : DBObject, IEnumerable<DBTableRecord>
     {
+        /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "DBTable"; }
+        }
+
         protected List<DBTableRecord> _items = new List<DBTableRecord>();
         protected Dictionary<string, DBTableRecord> _dictName2Item = new Dictionary<string, DBTableRecord>();
 
@@ -82,6 +91,11 @@ namespace LitCAD.DatabaseServices
                 throw new System.Exception("TableRecord is not newly created");
             }
 
+            return _Add(tblRecord);
+        }
+
+        protected ObjectId _Add(DBTableRecord tblRecord)
+        {
             _items.Add(tblRecord);
             tblRecord._dbtable = this;
             _dictName2Item[tblRecord.name] = tblRecord;
@@ -110,6 +124,15 @@ namespace LitCAD.DatabaseServices
                     itemRemoved.Invoke(tblRecord);
                 }
             }
+        }
+
+        /// <summary>
+        /// 清空表
+        /// </summary>
+        internal virtual void Clear()
+        {
+            _items.Clear();
+            _dictName2Item.Clear();
         }
 
         /// <summary>
@@ -148,6 +171,30 @@ namespace LitCAD.DatabaseServices
                     return null;
                 }
             }
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public override void XmlOut(Filer.XmlFiler filer)
+        {
+            Filer.XmlFilerImpl filerImpl = filer as Filer.XmlFilerImpl;
+
+            base.XmlOut(filer);
+            foreach (DBTableRecord item in _items)
+            {
+                filerImpl.NewSubNodeAndInsert(item.className);
+                item.XmlOut(filer);
+                filerImpl.Pop();
+            }
+        }
+
+        /// <summary>
+        /// 读XML
+        /// </summary>
+        public override void XmlIn(Filer.XmlFiler filer)
+        {
+            base.XmlIn(filer);
         }
 
         #region IEnumerable<DBTableRecord>

@@ -17,9 +17,13 @@ namespace LitCAD.Windows
 
             string[] args = Environment.GetCommandLineArgs();
             if (args.Length == 2)
-                OpenDocument(args[1]);
+            {
+                OpenFile(args[1]);
+            }
             else
-                OpenDocument(string.Empty);
+            {
+                NewFile();
+            }
 
             Application.Idle += this.OnIdle;
         }
@@ -254,6 +258,11 @@ namespace LitCAD.Windows
         /// </summary>
         private void OnFileNew(object sender, EventArgs e)
         {
+            NewFile();
+        }
+
+        private void NewFile()
+        {
             DocumentForm docForm = new DocumentForm();
             docForm.MdiParent = this;
             docForm.WindowState = FormWindowState.Maximized;
@@ -265,15 +274,29 @@ namespace LitCAD.Windows
         /// </summary>
         private void OnFileOpen(object sender, EventArgs e)
         {
-            MessageBox.Show("OnFileOpen");
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "LitCAD文件(*.litcad)|*.litcad";
+            ofd.ValidateNames = true;
+            ofd.CheckPathExists = true;
+            ofd.CheckFileExists = true;
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string strFileFullPath = ofd.FileName;
+                OpenFile(strFileFullPath);
+            }
         }
 
-        void OpenDocument(string filename)
+        private void OpenFile(string fileFullPath)
         {
-            DocumentForm f = new DocumentForm();
-            f.MdiParent = this;
-            f.WindowState = FormWindowState.Maximized;
-            f.Show();
+            DocumentForm docForm = new DocumentForm();
+            if (fileFullPath != null
+                && System.IO.File.Exists(fileFullPath))
+            {
+                docForm.Open(fileFullPath);
+            }
+            docForm.MdiParent = this;
+            docForm.WindowState = FormWindowState.Maximized;
+            docForm.Show();
         }
 
         /// <summary>
@@ -281,7 +304,32 @@ namespace LitCAD.Windows
         /// </summary>
         private void OnFileSave(object sender, EventArgs e)
         {
-            MessageBox.Show("OnFileSave");
+            DocumentForm activeDocForm = this.ActiveMdiChild as DocumentForm;
+            if (activeDocForm == null)
+            {
+                return;
+            }
+
+            LitCAD.DatabaseServices.Database db = activeDocForm.document.database;
+            if (db.fileName == null)
+            {
+                SaveFileDialog savedialog = new SaveFileDialog();
+                savedialog.Title = "保存";
+                savedialog.Filter = "LitCAD文件(*.litcad)|*.litcad";
+                savedialog.FilterIndex = 0;
+                savedialog.RestoreDirectory = true;
+                savedialog.CheckPathExists = true;
+                savedialog.FileName = "";
+                if (savedialog.ShowDialog() == DialogResult.OK)
+                {
+                    string fileFullPath = savedialog.FileName;
+                    activeDocForm.SaveAs(fileFullPath, true);
+                }
+            }
+            else
+            {
+                activeDocForm.Save();
+            }
         }
 
         /// <summary>
@@ -289,7 +337,24 @@ namespace LitCAD.Windows
         /// </summary>
         private void OnFileSaveAs(object sender, EventArgs e)
         {
-            MessageBox.Show("OnFileSaveAs");
+            DocumentForm activeDocForm = this.ActiveMdiChild as DocumentForm;
+            if (activeDocForm == null)
+            {
+                return;
+            }
+
+            SaveFileDialog savedialog = new SaveFileDialog();
+            savedialog.Title = "另存为";
+            savedialog.Filter = "LitCAD文件(*.litcad)|*.litcad";
+            savedialog.FilterIndex = 0;
+            savedialog.RestoreDirectory = true;
+            savedialog.CheckPathExists = true;
+            savedialog.FileName = "";
+            if (savedialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileFullPath = savedialog.FileName;
+                activeDocForm.SaveAs(fileFullPath);
+            }
         }
 
         protected override void OnMdiChildActivate(EventArgs e)

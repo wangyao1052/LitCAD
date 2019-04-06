@@ -8,6 +8,14 @@ namespace LitCAD.DatabaseServices
     /// </summary>
     public class Polyline : Entity
     {
+        /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "Polyline"; }
+        }
+
         private List<LitMath.Vector2> _vertices = new List<LitMath.Vector2>();
         private bool _closed = false;
 

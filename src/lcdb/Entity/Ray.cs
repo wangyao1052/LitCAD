@@ -9,6 +9,14 @@ namespace LitCAD.DatabaseServices
     public class Ray : Entity
     {
         /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "Ray"; }
+        }
+
+        /// <summary>
         /// 基点
         /// </summary>
         private LitMath.Vector2 _basePoint = new LitMath.Vector2(0, 0);
@@ -169,6 +177,28 @@ namespace LitCAD.DatabaseServices
                     _direction = dir;
                 }
             }
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public override void XmlOut(Filer.XmlFiler filer)
+        {
+            base.XmlOut(filer);
+
+            filer.Write("basePoint", _basePoint);
+            filer.Write("direction", _direction);
+        }
+
+        /// <summary>
+        /// 读XML
+        /// </summary>
+        public override void XmlIn(Filer.XmlFiler filer)
+        {
+            base.XmlIn(filer);
+
+            filer.Read("basePoint", out _basePoint);
+            filer.Read("direction", out _direction);
         }
     }
 }

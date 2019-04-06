@@ -11,6 +11,14 @@ namespace LitCAD.DatabaseServices
     public class Layer : DBTableRecord
     {
         /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "Layer"; }
+        }
+
+        /// <summary>
         /// 颜色
         /// </summary>
         private Color _color = Color.FromRGB(255, 255, 255);
@@ -71,6 +79,28 @@ namespace LitCAD.DatabaseServices
         protected override DBObject CreateInstance()
         {
             return new Layer();
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public override void XmlOut(Filer.XmlFiler filer)
+        {
+            base.XmlOut(filer);
+
+            filer.Write("color", _color);
+            filer.Write("lineWeight", _lineWeight);
+        }
+
+        /// <summary>
+        /// 读XML
+        /// </summary>
+        public override void XmlIn(Filer.XmlFiler filer)
+        {
+            base.XmlIn(filer);
+
+            filer.Read("color", out _color);
+            filer.Read("lineWeight", out _lineWeight);
         }
     }
 }

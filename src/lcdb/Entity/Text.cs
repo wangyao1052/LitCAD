@@ -6,6 +6,14 @@ namespace LitCAD.DatabaseServices
     public class Text : Entity
     {
         /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "Text"; }
+        }
+
+        /// <summary>
         /// 文本
         /// </summary>
         private string _text = "";
@@ -216,6 +224,14 @@ namespace LitCAD.DatabaseServices
             {
                 _position = newPosition;
             }
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public override void XmlOut(Filer.XmlFiler filer)
+        {
+            base.XmlOut(filer);
         }
     }
 }

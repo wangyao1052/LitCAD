@@ -13,6 +13,18 @@ namespace LitCAD.DatabaseServices
             _database = db;
         }
 
+        internal void reset()
+        {
+            if (_database != null)
+            {
+                ObjectId max = _database.currentMaxId;
+                if (max.id > 10000)
+                {
+                    _currentId = max.id;
+                }
+            }
+        }
+
         internal ObjectId NextId
         {
             get { return new ObjectId(++_currentId); }

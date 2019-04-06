@@ -58,9 +58,24 @@ namespace LitCAD.Windows
             _document.currentColorChanged += this.OnDocumentCurrColorChanged;
             
             //
-            Layer layer = new Layer("test");
-            layer.color = LitCAD.Colors.Color.FromRGB(255, 0, 0);
-            _document.database.layerTable.Add(layer);
+            //Layer layer = new Layer("test");
+            //layer.color = LitCAD.Colors.Color.FromRGB(255, 0, 0);
+            //_document.database.layerTable.Add(layer);
+        }
+
+        internal void Open(string fileFullPath)
+        {
+            _document.database.Open(fileFullPath);
+        }
+
+        internal void Save()
+        {
+            _document.database.Save();
+        }
+
+        internal void SaveAs(string fileFullPath, bool rename = false)
+        {
+            _document.database.SaveAs(fileFullPath, rename);
         }
 
         /// <summary>

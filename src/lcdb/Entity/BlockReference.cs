@@ -8,6 +8,14 @@ namespace LitCAD.DatabaseServices
     public class BlockReference : Entity
     {
         /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "BlockReference"; }
+        }
+
+        /// <summary>
         /// 外围边框
         /// </summary>
         public override Bounding bounding

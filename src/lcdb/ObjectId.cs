@@ -29,6 +29,26 @@ namespace LitCAD.DatabaseServices
             get { return _id == 0; }
         }
 
+        public override string ToString()
+        {
+            return _id.ToString();
+        }
+
+        internal static bool TryParse(string s, out ObjectId result)
+        {
+            uint uid = 0;
+            if (uint.TryParse(s, out uid))
+            {
+                result = new ObjectId(uid);
+                return true;
+            }
+            else
+            {
+                result = ObjectId.Null;
+                return false;
+            }
+        }
+
         #region IEquatable<ObjectId>
         public override bool Equals(object obj)
         {

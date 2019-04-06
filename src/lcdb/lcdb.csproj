@@ -120,6 +120,8 @@
     <Compile Include="Entity\Text.cs" />
     <Compile Include="Entity\TextAlignment.cs" />
     <Compile Include="Entity\Xline.cs" />
+    <Compile Include="Filer\XmlFiler.cs" />
+    <Compile Include="Filer\XmlFilerImpl.cs" />
     <Compile Include="GripPoint.cs" />
     <Compile Include="GripPointType.cs" />
     <Compile Include="IDatabaseObserver.cs" />
@@ -144,6 +146,7 @@
       <Name>lcinterface</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

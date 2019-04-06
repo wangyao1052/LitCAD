@@ -9,6 +9,14 @@ namespace LitCAD.DatabaseServices
     public abstract class DBTableRecord : DBObject
     {
         /// <summary>
+        /// 类名
+        /// </summary>
+        public override string className
+        {
+            get { return "DBTableRecord"; }
+        }
+
+        /// <summary>
         /// 名称
         /// </summary>
         protected string _name = "";
@@ -47,6 +55,26 @@ namespace LitCAD.DatabaseServices
             {
                 _dbtable.Remove(this);
             }
+        }
+
+        /// <summary>
+        /// 写XML
+        /// </summary>
+        public override void XmlOut(Filer.XmlFiler filer)
+        {
+            base.XmlOut(filer);
+
+            filer.Write("name", _name);
+        }
+
+        /// <summary>
+        /// 读XML
+        /// </summary>
+        public override void XmlIn(Filer.XmlFiler filer)
+        {
+            base.XmlIn(filer);
+
+            filer.Read("name", out _name);
         }
     }
 }
