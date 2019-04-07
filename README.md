@@ -11,7 +11,7 @@ LitCAD是自由软件，你可以在遵守 MIT 协议下再分发或修改该软
 
 #### Building 编译
 
-Download the source code and open ./src/LitCAD.sln through Visual Studio 2010, then you can directly compile and build this project.
+Download the source code and open ./src/LitCAD.sln by Visual Studio 2010, then you can directly compile and build this project.
 
 下载源码，然后使用VS2010 打开解决方案：./src/LitCAD.sln，直接编译即可。
 
@@ -44,6 +44,14 @@ Download the source code and open ./src/LitCAD.sln through Visual Studio 2010, t
 * Undo and Redo.
 
   撤销和重做。
+
+* Multiple Ways For Object Selection: Pick Single、Window、Cross.
+
+  支持点选和框选来选择图元。
+
+* Open and Save *.litcad file.
+
+  支持打开和保存为 *.litcad 文件。
 
 #### Entities supported 支持的图元
 
