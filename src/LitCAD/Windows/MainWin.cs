@@ -264,9 +264,52 @@ namespace LitCAD.Windows
         private void NewFile()
         {
             DocumentForm docForm = new DocumentForm();
+            docForm.Text = GetNextNewFileName();
             docForm.MdiParent = this;
             docForm.WindowState = FormWindowState.Maximized;
             docForm.Show();
+        }
+
+        private string GetNextNewFileName()
+        {
+            string strBase = "new";
+            uint id = 1;
+
+            foreach (Form form in this.MdiChildren)
+            {
+                DocumentForm docForm = form as DocumentForm;
+                if (docForm == null)
+                {
+                    continue;
+                }
+
+                string fileName = "";
+                LitCAD.DatabaseServices.Database db = docForm.document.database;
+                if (db.fileName != null)
+                {
+                    fileName = System.IO.Path.GetFileNameWithoutExtension(db.fileName);
+                }
+                else
+                {
+                    fileName = docForm.Text;
+                }
+                fileName = fileName.ToLower();
+
+                if (fileName.IndexOf(strBase) == 0)
+                {
+                    fileName = fileName.Substring(strBase.Length);
+                    uint number = 0;
+                    if (uint.TryParse(fileName, out number))
+                    {
+                        if (number >= id)
+                        {
+                            id = number + 1;
+                        }
+                    }
+                }
+            }
+
+            return string.Format("{0}{1}", strBase, id);
         }
 
         /// <summary>
@@ -288,6 +331,25 @@ namespace LitCAD.Windows
 
         private void OpenFile(string fileFullPath)
         {
+            // 检查是否已经打开
+            string fileFullPathLower = fileFullPath.ToLower();
+            foreach (Form form in this.MdiChildren)
+            {
+                DocumentForm childDocForm = form as DocumentForm;
+                if (childDocForm == null)
+                {
+                    continue;
+                }
+
+                string strDocPath = childDocForm.fileFullPath.ToLower();
+                if (fileFullPathLower == strDocPath)
+                {
+                    childDocForm.Activate();
+                    return;
+                }
+            }
+
+            // 打开文件
             DocumentForm docForm = new DocumentForm();
             if (fileFullPath != null
                 && System.IO.File.Exists(fileFullPath))
@@ -319,7 +381,7 @@ namespace LitCAD.Windows
                 savedialog.FilterIndex = 0;
                 savedialog.RestoreDirectory = true;
                 savedialog.CheckPathExists = true;
-                savedialog.FileName = "";
+                savedialog.FileName = activeDocForm.Text;
                 if (savedialog.ShowDialog() == DialogResult.OK)
                 {
                     string fileFullPath = savedialog.FileName;
@@ -357,6 +419,9 @@ namespace LitCAD.Windows
             }
         }
 
+        /// <summary>
+        /// 子窗体激活事件
+        /// </summary>
         protected override void OnMdiChildActivate(EventArgs e)
         {
             base.OnMdiChildActivate(e);
@@ -391,6 +456,9 @@ namespace LitCAD.Windows
             }
         }
 
+        /// <summary>
+        /// 空闲事件
+        /// </summary>
         private void OnIdle(object sender, EventArgs e)
         {
             DocumentForm currActiveDocForm = this.ActiveMdiChild as DocumentForm;
