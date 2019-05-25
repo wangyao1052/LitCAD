@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 
 using LitCAD.Colors;
-using LitCAD.Utils;
 
 namespace LitCAD.ApplicationServices
 {

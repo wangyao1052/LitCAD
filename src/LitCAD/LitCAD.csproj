@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LitCAD</RootNamespace>
     <AssemblyName>LitCAD</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -128,7 +128,6 @@
     <Compile Include="Commands\Text\EditCmd.cs" />
     <Compile Include="DatabaseUtils\DatabaseUtils.cs" />
     <Compile Include="ApplicationServices\Document.cs" />
-    <Compile Include="ApplicationServices\HashSet.cs" />
     <Compile Include="ApplicationServices\Selection.cs" />
     <Compile Include="ApplicationServices\Selections.cs" />
     <Compile Include="Commands\Draw\ArcCmd.cs" />

@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 using LitCAD.ApplicationServices;
 using LitCAD.DatabaseServices;
-using LitCAD.Utils;
 using lcColor = LitCAD.Colors.Color;
 
 namespace LitCAD.Windows

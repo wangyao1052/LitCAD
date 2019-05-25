@@ -4,7 +4,6 @@ using System.Windows.Forms;
 
 using LitCAD.ApplicationServices;
 using LitCAD.DatabaseServices;
-using LitCAD.Utils;
 
 namespace LitCAD.Commands
 {
