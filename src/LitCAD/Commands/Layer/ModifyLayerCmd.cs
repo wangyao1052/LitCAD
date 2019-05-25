@@ -26,6 +26,7 @@ namespace LitCAD.Commands
         public override void Initialize()
         {
             LayerItemForm dlg = new LayerItemForm(LayerItemForm.Mode.Modify, _layer, this.database);
+            dlg.StartPosition = FormStartPosition.CenterParent;
             DialogResult dlgRet = dlg.ShowDialog();
             if (dlgRet == DialogResult.OK)
             {

@@ -38,17 +38,18 @@
             // 
             // textboxName
             // 
-            this.textboxName.Location = new System.Drawing.Point(97, 17);
+            this.textboxName.Location = new System.Drawing.Point(109, 20);
+            this.textboxName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textboxName.Name = "textboxName";
-            this.textboxName.Size = new System.Drawing.Size(185, 25);
+            this.textboxName.Size = new System.Drawing.Size(208, 28);
             this.textboxName.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 22);
+            this.label1.Location = new System.Drawing.Point(18, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 15);
+            this.label1.Size = new System.Drawing.Size(85, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "图层名称";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -56,9 +57,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 61);
+            this.label2.Location = new System.Drawing.Point(18, 73);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 15);
+            this.label2.Size = new System.Drawing.Size(47, 19);
             this.label2.TabIndex = 3;
             this.label2.Text = "颜色";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -66,16 +67,18 @@
             // comboColor
             // 
             this.comboColor.FormattingEnabled = true;
-            this.comboColor.Location = new System.Drawing.Point(97, 57);
+            this.comboColor.Location = new System.Drawing.Point(109, 68);
+            this.comboColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboColor.Name = "comboColor";
-            this.comboColor.Size = new System.Drawing.Size(185, 23);
+            this.comboColor.Size = new System.Drawing.Size(208, 26);
             this.comboColor.TabIndex = 4;
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(56, 166);
+            this.btnOK.Location = new System.Drawing.Point(63, 199);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(92, 34);
+            this.btnOK.Size = new System.Drawing.Size(104, 41);
             this.btnOK.TabIndex = 5;
             this.btnOK.Text = "确认";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -83,9 +86,10 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(168, 166);
+            this.btnCancel.Location = new System.Drawing.Point(189, 199);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(92, 34);
+            this.btnCancel.Size = new System.Drawing.Size(104, 41);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -93,16 +97,19 @@
             // 
             // LayerItemForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(305, 207);
+            this.ClientSize = new System.Drawing.Size(343, 248);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.comboColor);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textboxName);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "LayerItemForm";
             this.Text = "图层";
             this.ResumeLayout(false);
