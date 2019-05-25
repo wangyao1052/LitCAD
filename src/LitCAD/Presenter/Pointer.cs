@@ -183,7 +183,14 @@ namespace LitCAD.UI
                                 List<Selection> sels = _pickupBox.Select(_presenter.currentBlock);
                                 if (sels.Count > 0)
                                 {
-                                    (_presenter.document as Document).selections.Add(sels);
+                                    if (IsShiftKeyDown)
+                                    {
+                                        (_presenter.document as Document).selections.Remove(sels);
+                                    }
+                                    else
+                                    {
+                                        (_presenter.document as Document).selections.Add(sels);
+                                    }
                                 }
                                 else
                                 {
@@ -223,7 +230,14 @@ namespace LitCAD.UI
                             List<Selection> sels = _pickupBox.Select(_presenter.currentBlock);
                             if (sels.Count > 0)
                             {
-                                (_presenter.document as Document).selections.Add(sels);
+                                if (IsShiftKeyDown)
+                                {
+                                    (_presenter.document as Document).selections.Remove(sels);
+                                }
+                                else
+                                {
+                                    (_presenter.document as Document).selections.Add(sels);
+                                }
                             }
                             else
                             {
@@ -258,7 +272,15 @@ namespace LitCAD.UI
                     List<Selection> sels = _selRect.Select(_presenter.currentBlock);
                     if (sels.Count > 0)
                     {
-                        (_presenter.document as Document).selections.Add(sels);
+                        if (IsShiftKeyDown)
+                        {
+                            (_presenter.document as Document).selections.Remove(sels);
+                        }
+                        else
+                        {
+                            (_presenter.document as Document).selections.Add(sels);
+                        }
+                        
                     }
                 }
                 _selRect = null;
@@ -419,6 +441,14 @@ namespace LitCAD.UI
             if (_isShowAnchor)
             {
                 _anchorMgr.Update();
+            }
+        }
+
+        private bool IsShiftKeyDown
+        {
+            get
+            {
+                return (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
             }
         }
     }

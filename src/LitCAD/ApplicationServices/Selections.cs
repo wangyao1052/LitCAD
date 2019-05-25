@@ -56,6 +56,33 @@ namespace LitCAD.ApplicationServices
             }
         }
 
+        private void RemoveSelections(IEnumerable<Selection> sels)
+        {
+            foreach (Selection sel in sels)
+            {
+                _id2Selction.Remove(sel.objectId);
+            }
+            if (changed != null)
+            {
+                changed.Invoke();
+            }
+        }
+
+        private bool IsSelectionCanAdd(Selection sel)
+        {
+            if (sel.objectId == ObjectId.Null)
+            {
+                return false;
+            }
+
+            if (this.IsObjectSelected(sel.objectId))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         public bool Add(Selection sel)
         {
             if (IsSelectionCanAdd(sel))
@@ -91,21 +118,6 @@ namespace LitCAD.ApplicationServices
             }
         }
 
-        private bool IsSelectionCanAdd(Selection sel)
-        {
-            if (sel.objectId == ObjectId.Null)
-            {
-                return false;
-            }
-
-            if (this.IsObjectSelected(sel.objectId))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
         public bool Add(ObjectId objectId)
         {
             return this.Add(new Selection(objectId, new LitMath.Vector2(0, 0)));
@@ -121,6 +133,28 @@ namespace LitCAD.ApplicationServices
             if (this.IsObjectSelected(selection.objectId))
             {
                 this.RemoveSelection(selection);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool Remove(IEnumerable<Selection> sels)
+        {
+            List<Selection> filterSels = new List<Selection>();
+            foreach (Selection sel in sels)
+            {
+                if (IsObjectSelected(sel.objectId))
+                {
+                    filterSels.Add(sel);
+                }
+            }
+
+            if (filterSels.Count > 0)
+            {
+                RemoveSelections(filterSels);
                 return true;
             }
             else
