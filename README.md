@@ -3,7 +3,7 @@ LitCAD is a very simple 2D CAD drawing application developed by C#.
 
 LitCAD是使用C#开发的，一款非常简单的二维CAD绘图程序。
 
-![cover](doc/images/litcad.png)
+![cover](./doc/images/litcad.png)
 
 LitCAD is free software; you can redistribute it and/or modify it under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
